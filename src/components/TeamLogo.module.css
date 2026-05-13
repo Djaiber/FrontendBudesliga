@@ -1,0 +1,40 @@
+.teamLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--dark3);
+  border: 2px solid var(--border);
+  transition: all 150ms;
+}
+
+.teamLogo:hover {
+  border-color: var(--red);
+  transform: scale(1.05);
+}
+
+.logoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+}
+
+/* Size variants */
+.small {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+.medium {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+}
+
+.large {
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+}

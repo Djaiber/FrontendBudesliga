@@ -1,12 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FrontendBudes</title>
+    <title>Bundesliga - Offizielle Webseite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="live-predict-root"></div>
-    <script type="module" src="/src/live-predict/main.tsx"></script>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <div class="top-bar-links">
+          <a href="#">BROADCASTER</a>
+          <a href="#">#BUNDESLIGAWIRKT ↗</a>
+          <a href="#">COMMON GROUND ↗</a>
+          <a href="#">MITFAHRPORTAL ↗</a>
+          <a href="#">DFL ↗</a>
+        </div>
+        <div class="top-bar-links">
+          <a href="#">🏆 BUNDESLIGA APP</a>
+          <a href="#">⚽ FANTASY MANAGER</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="/" class="logo">
+          <span class="logo-icon">⚽</span>
+          <span class="logo-text">BUNDESLIGA</span>
+        </a>
+        <div>
+          <div class="header-subtitle">Offizielle Webseite</div>
+          <div class="header-subtitle">präsentiert von</div>
+        </div>
+        <div class="header-sponsor">ESPN</div>
+      </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+      <div class="nav-content">
+        <a href="/" class="nav-link" aria-current="page">Home</a>
+        <a href="#" class="nav-link">News</a>
+        <a href="#" class="nav-link">Spielplan</a>
+        <a href="#" class="nav-link">Tabelle</a>
+        <a href="#" class="nav-link">Clubs</a>
+        <a href="#" class="nav-link">Liveticker</a>
+        <a href="/live-predict" class="nav-link" id="live-predict-nav">
+          Live Predict
+          <span class="live-pill">LIVE</span>
+        </a>
+        <a href="#" class="nav-link">History</a>
+        <a href="#" class="nav-link">Videos</a>
+        <a href="#" class="nav-link">Tickets</a>
+        <a href="#" class="nav-link">Statistiken</a>
+        <a href="#" class="nav-link">Awards</a>
+        <a href="#" class="nav-link">Spieler</a>
+        <a href="#" class="nav-link">FAQ</a>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="app-root"></main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <h3>Bundesliga</h3>
+            <div class="footer-links">
+              <a href="/">Home</a>
+              <a href="#">News</a>
+              <a href="#">Spielplan</a>
+              <a href="#">Tabelle</a>
+              <a href="#">Clubs</a>
+              <a href="#">Spieler</a>
+              <a href="#">Statistiken</a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3>Mehr</h3>
+            <div class="footer-links">
+              <a href="#">Bundesliga App</a>
+              <a href="#">Fantasy Manager</a>
+              <a href="#">Liveticker</a>
+              <a href="#">Videos</a>
+              <a href="#">History</a>
+              <a href="#">Awards</a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3>DFL</h3>
+            <div class="footer-links">
+              <a href="#">DFL Deutsche Fußball Liga</a>
+              <a href="#">Broadcaster</a>
+              <a href="#">Common Ground</a>
+              <a href="#">Mitfahrportal</a>
+              <a href="#">#BundesligaWirkt</a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3>Folge uns</h3>
+            <div class="footer-links">
+              <a href="#">🔵 Facebook</a>
+              <a href="#">📸 Instagram</a>
+              <a href="#">𝕏 X (Twitter)</a>
+              <a href="#">▶ YouTube</a>
+              <a href="#">in LinkedIn</a>
+              <a href="#">⬡ TikTok</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 DFL Deutsche Fußball Liga GmbH. Alle Rechte vorbehalten.</p>
+          <div class="footer-legal">
+            <a href="#">Impressum</a>
+            <a href="#">Datenschutz</a>
+            <a href="#">Nutzungsbedingungen</a>
+            <a href="#">Cookie-Einstellungen</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
