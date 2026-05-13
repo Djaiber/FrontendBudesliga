@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage';
 import LivePredictLayout from './live-predict/components/layout/LivePredictLayout';
 import MatchListPage from './live-predict/components/pages/MatchListPage';
 import HistoryPage from './live-predict/components/pages/HistoryPage';
+import { BundesligaLogo } from './components/icons/BundesligaLogo';
 
 // Lazy load match detail page for code splitting
 const MatchDetailPage = lazy(() => import('./live-predict/components/pages/MatchDetailPage'));
@@ -78,6 +79,12 @@ if (container) {
       <RouterProvider router={router} />
     </StrictMode>,
   );
+}
+
+// Render Bundesliga logo in header
+const logoContainer = document.getElementById('bundesliga-logo');
+if (logoContainer) {
+  createRoot(logoContainer).render(<BundesligaLogo size={40} />);
 }
 
 // Update active nav link based on current route
