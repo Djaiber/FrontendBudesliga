@@ -55,6 +55,10 @@ function LoadingSpinner() {
  * Validates: Requirements 2.1, 16.4, 19.2
  */
 export const router = createBrowserRouter([
+   {
+    path: '/',
+    loader: () => Response.redirect('/live-predict'),  // ← add this
+  },
   {
     path: '/live-predict',
     element: <LivePredictLayout />,

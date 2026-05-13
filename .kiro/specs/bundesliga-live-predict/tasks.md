@@ -91,7 +91,7 @@ The design document uses TypeScript/React, so all implementation tasks use TypeS
   - On unmount, call transport.disconnect() and clear all timers.
   - _Requirements: 14.1, 14.2, 14.3, 14.4, 14.5_
 
-- [~] 10. Checkpoint — core infrastructure complete
+- [x] 10. Checkpoint — core infrastructure complete
   - Ensure all TypeScript files compile with zero errors (tsc --noEmit).
   - Ensure all tests pass, ask the user if questions arise.
 - [x] 11. Atom components — DemomodusBanner, LiveDot, LivePill, FilterPill
@@ -238,7 +238,7 @@ The design document uses TypeScript/React, so all implementation tasks use TypeS
   - Export the router and mount it in the main entry point.
   - _Requirements: 2.1, 16.4, 19.2_
 
-- [~] 26. Checkpoint — full UI wired and navigable
+- [x] 26. Checkpoint — full UI wired and navigable
   - Ensure all routes render without runtime errors.
   - Ensure the DEMOMODUS banner appears on all three routes.
   - Ensure all TypeScript files compile with zero errors.
@@ -246,90 +246,90 @@ The design document uses TypeScript/React, so all implementation tasks use TypeS
 - [x] 27. Property-based tests — fast-check arbitraries and DTO round-trip
   - [x] 27.1 Create `test/arbitraries.ts` with all fast-check arbitraries: arbMatchStatus, arbTeamInfo, arbMatch, arbPlayerPosition, arbFrame, arbKPIEventType, arbKPIEvent, arbOutcome, arbMiniMarket, arbBet — exactly as specified in the design.
     - _Requirements: 20.4_
-  - [-] 27.2 Write property test for Frame round-trip (Property 15)
+  - [x] 27.2 Write property test for Frame round-trip (Property 15)
     - **Property 15: DTO Round-Trip (Parse -> PrettyPrint -> Parse)**
     - In `test/parsers.property.test.ts`, assert that for any arbFrame value, prettyPrintFrame -> JSON.stringify -> JSON.parse -> parseFrame produces a deeply equal Frame.
     - Tag: Feature: bundesliga-live-predict, Property 15: DTO round-trip parse -> prettyPrint -> parse
     - numRuns: 100
     - **Validates: Requirements 20.1, 20.3, 20.4**
-  - [-] 27.3 Write property test for KPIEvent round-trip (Property 15)
+  - [x] 27.3 Write property test for KPIEvent round-trip (Property 15)
     - **Property 15: DTO Round-Trip (Parse -> PrettyPrint -> Parse)**
     - Assert round-trip for arbKPIEvent using prettyPrintKPIEvent / parseKPIEvent.
     - Tag: Feature: bundesliga-live-predict, Property 15: DTO round-trip parse -> prettyPrint -> parse
     - numRuns: 100
     - **Validates: Requirements 20.1, 20.3, 20.4**
-  - [-] 27.4 Write property test for MiniMarket round-trip (Property 15)
+  - [x] 27.4 Write property test for MiniMarket round-trip (Property 15)
     - **Property 15: DTO Round-Trip (Parse -> PrettyPrint -> Parse)**
     - Assert round-trip for arbMiniMarket using prettyPrintMiniMarket / parseMiniMarket.
     - Tag: Feature: bundesliga-live-predict, Property 15: DTO round-trip parse -> prettyPrint -> parse
     - numRuns: 100
     - **Validates: Requirements 20.1, 20.3, 20.4**
-  - [-] 27.5 Write property test for Bet round-trip (Property 15)
+  - [x] 27.5 Write property test for Bet round-trip (Property 15)
     - **Property 15: DTO Round-Trip (Parse -> PrettyPrint -> Parse)**
     - Assert round-trip for arbBet using prettyPrintBet / parseBet.
     - Tag: Feature: bundesliga-live-predict, Property 15: DTO round-trip parse -> prettyPrint -> parse
     - numRuns: 100
     - **Validates: Requirements 20.1, 20.3, 20.4**
-  - [ ] 27.6 Write property test for parser rejection of invalid inputs (Property 16)
+  - [x] 27.6 Write property test for parser rejection of invalid inputs (Property 16)
     - **Property 16: Parser Rejects Invalid Inputs**
     - In `test/parsers.property.test.ts`, generate objects missing required fields (e.g., Frame without matchId, MiniMarket with outcomes.length outside 2-4, Bet with stake outside [1,500]) and assert each parser returns { ok: false, error: <non-empty string> } without throwing.
     - Tag: Feature: bundesliga-live-predict, Property 16: Parser rejects invalid inputs
     - numRuns: 100
     - **Validates: Requirements 20.1, 20.2**
-- [ ] 28. Unit tests — stores and selectors
-  - [~] 28.1 Write unit tests for marketStore
+- [x] 28. Unit tests — stores and selectors
+  - [x] 28.1 Write unit tests for marketStore
     - In `test/marketStore.test.ts`, test addMarket, updateMarket, settleMarket actions.
     - Test filteredMarkets selector: returns all markets when filter is Alle; returns only matching markets when a category is selected.
     - Test marketCountByCategory selector returns correct counts.
     - _Requirements: 10.8, 10.9, 19.5_
-  - [~] 28.2 Write unit tests for betStore
+  - [x] 28.2 Write unit tests for betStore
     - In `test/betStore.test.ts`, test addBet, settleBet actions.
     - Test sessionPnL selector computes correct net P&L across mixed bet statuses.
     - _Requirements: 12.2, 19.5_
 
-- [ ] 29. Unit tests — components
-  - [~] 29.1 Write unit tests for MarketCard
+- [x] 29. Unit tests — components
+  - [x] 29.1 Write unit tests for MarketCard
     - In `test/MarketCard.test.tsx`, test: TTL countdown renders in MM:SS format; aria-live="polite" is present; settled state shows green checkmark on winning outcome and grey dash on losing outcomes; LivePill is present.
     - _Requirements: 10.2, 10.3, 17.2, 19.5_
-  - [~] 29.2 Write unit tests for OutcomeButton
+  - [x] 29.2 Write unit tests for OutcomeButton
     - In `test/OutcomeButton.test.tsx`, test: renders label, odds, implied probability; keyboard Enter/Space triggers onClick; aria-label contains market question + outcome label + odds; role="button" is set.
     - _Requirements: 10.4, 11.8, 17.1, 19.5_
-  - [~] 29.3 Write unit tests for BetSlip
+  - [x] 29.3 Write unit tests for BetSlip
     - In `test/BetSlip.test.tsx`, test: amount validation rejects values below 1 and above 500; payout calculation updates in real time as user types; "Wette bestätigen" calls submit; inline error message shown on API failure; modal closes on success.
     - _Requirements: 11.2, 11.3, 11.4, 11.5, 11.6, 19.5_
-  - [~] 29.4 Write unit tests for MatchListPage filtering
+  - [x] 29.4 Write unit tests for MatchListPage filtering
     - In `test/MatchListPage.test.tsx`, test: only live and upcoming match cards are rendered for a mixed-status array; empty-state message shown when no live/upcoming matches.
     - _Requirements: 4.1, 4.5, 19.5_
 
-- [ ] 30. Unit tests — useMatchStream reconnection
-  - [~] 30.1 Write unit tests for useMatchStream reconnection logic
+- [x] 30. Unit tests — useMatchStream reconnection
+  - [x] 30.1 Write unit tests for useMatchStream reconnection logic
     - In `test/useMatchStream.test.ts`, use a mock transport that closes immediately.
     - Assert that after each of 5 consecutive failures the hook schedules a retry with the correct exponential delay (1s, 2s, 4s, 8s, 16s).
     - Assert that after 5 failures connectionStatus is set to error and no further retry is scheduled.
     - Assert that unmounting the hook calls transport.disconnect() and cancels pending timers.
     - _Requirements: 14.2, 14.3, 14.5, 19.5_
 
-- [ ] 31. Unit tests — position interpolation
-  - [~] 31.1 Write property test for position interpolation convex combination (Property 6)
+- [x] 31. Unit tests — position interpolation
+  - [x] 31.1 Write property test for position interpolation convex combination (Property 6)
     - **Property 6: Position Interpolation Is a Convex Combination**
     - In `test/interpolation.test.ts`, for any two positions (x0,y0) and (x1,y1) within pitch bounds and any alpha in [0,1], assert interpolatePosition returns x = x0 + alpha*(x1-x0) and y = y0 + alpha*(y1-y0), and the result lies within [0,105]x[0,68].
     - Tag: Feature: bundesliga-live-predict, Property 6: Position interpolation is a convex combination
     - numRuns: 100
     - **Validates: Requirements 7.7**
 
-- [ ] 32. Integration test — full mock replay and navigation
-  - [~] 32.1 Write integration test for full mock replay mount
+- [x] 32. Integration test — full mock replay and navigation
+  - [x] 32.1 Write integration test for full mock replay mount
     - In `test/integration.test.tsx`, mount MatchDetailPage with USE_MOCK = true.
     - Assert that after the mock transport emits market.new messages, MarketCard components appear in the feed.
     - Assert that clicking an OutcomeButton opens the BetSlip modal.
     - Assert that confirming a bet adds it to the MeineWettenPanel.
     - _Requirements: 15.1, 15.2, 15.4_
-  - [~] 32.2 Write navigation integration test
+  - [x] 32.2 Write navigation integration test
     - Using MemoryRouter with all three routes, assert that navigating to /live-predict renders MatchListPage, navigating to /live-predict/:matchId renders MatchDetailPage, and navigating to /live-predict/meine-wetten renders HistoryPage.
     - Assert DemomodusBanner is present on all three routes.
     - _Requirements: 3.1, 19.2_
 
-- [~] 33. Final checkpoint — all tests pass
+- [x] 33. Final checkpoint — all tests pass
   - Run the full Vitest suite and ensure all tests pass.
   - Run tsc --noEmit and ensure zero TypeScript errors.
   - Ensure all tests pass, ask the user if questions arise.
