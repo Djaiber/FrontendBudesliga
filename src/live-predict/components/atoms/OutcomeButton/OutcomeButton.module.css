@@ -1,0 +1,46 @@
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 16px;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 150ms, border-color 150ms;
+  min-width: 80px;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--dark4);
+  border-color: var(--red);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.label {
+  font: 700 13px/1 'Roboto Condensed', sans-serif;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.odds {
+  font: 700 22px/1 'Oswald', sans-serif;
+  color: var(--red);
+}
+
+.probability {
+  font: 400 12px/1 'Roboto', sans-serif;
+  color: var(--text-muted);
+}

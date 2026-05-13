@@ -1,0 +1,86 @@
+/* MatchDetailPage.module.css
+ *
+ * Two-column layout for the match detail view.
+ * Left column: 60% (Scoreboard, MetricsBar, PitchView, Timeline)
+ * Right column: 40% (FilterPills + MarketsFeed)
+ * Below: MeineWettenPanel
+ *
+ * Responsive: below 900 px the columns stack vertically.
+ *
+ * Validates: Requirements 5.1, 5.2, 5.3, 5.4, 5.5
+ */
+
+/* ── Page wrapper ─────────────────────────────────────────────────────────── */
+
+.page {
+  position: relative;
+  padding: 16px;
+}
+
+/* ── Two-column grid ──────────────────────────────────────────────────────── */
+
+.layout {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Columns ──────────────────────────────────────────────────────────────── */
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0; /* prevent overflow in grid */
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* ── Connection error banner ──────────────────────────────────────────────── */
+
+.connectionError {
+  background: var(--red, #d2001f);
+  color: var(--text, #fff);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* ── Market expired toast ─────────────────────────────────────────────────── */
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark4, #282828);
+  color: var(--text, #fff);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: 1px solid var(--border, #2a2a2a);
+  z-index: 200;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}

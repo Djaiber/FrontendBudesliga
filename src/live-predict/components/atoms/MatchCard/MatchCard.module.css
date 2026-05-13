@@ -1,0 +1,113 @@
+/* MatchCard.module.css
+ *
+ * Extends the site's .match-card base class with hover behaviour,
+ * cursor, and layout overrides specific to the Live Predict feature.
+ *
+ * Validates: Requirements 4.7, 4.8
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+  background: var(--dark2, #141414);
+  cursor: pointer;
+  transition: transform 150ms ease, border-color 150ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--dark3, #1e1e1e);
+}
+
+/* Live indicator row */
+.liveRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Main match row: home team — score — away team */
+.matchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Team block */
+.team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.teamAway {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.teamName {
+  font: 700 13px/1 'Roboto Condensed', sans-serif;
+  color: var(--text, #fff);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Score block */
+.scoreBlock {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.score {
+  font: 400 16px/1 'Oswald', sans-serif;
+  color: var(--text, #fff);
+  min-width: 16px;
+  text-align: center;
+}
+
+.scoreSep {
+  font: 400 16px/1 'Oswald', sans-serif;
+  color: var(--text-muted, #888);
+}
+
+/* Footer: minute + open market badge */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.minute {
+  font: 400 16px/1 'Oswald', sans-serif;
+  color: var(--text-muted, #888);
+}
+
+.marketBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  background: var(--red, #d2001f);
+  border-radius: 10px;
+  font: 700 11px/1 'Roboto Condensed', sans-serif;
+  color: #fff;
+}

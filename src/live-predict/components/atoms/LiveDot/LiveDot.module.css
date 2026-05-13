@@ -1,0 +1,17 @@
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--red, #d2001f);
+  border-radius: 50%;
+  animation: blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}

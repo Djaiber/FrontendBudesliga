@@ -1,0 +1,18 @@
+{
+  "matchMeta": {
+    "id": "match-001",
+    "homeTeam": { "id": "fcb", "name": "FC Bayern München", "shortName": "FCB", "logoUrl": "/logos/fcb.png" },
+    "awayTeam": { "id": "bvb", "name": "Borussia Dortmund", "shortName": "BVB", "logoUrl": "/logos/bvb.png" },
+    "homeScore": 0,
+    "awayScore": 0,
+    "minute": 0,
+    "status": "live",
+    "openMarketCount": 0
+  },
+  "messages": [
+    { "offsetMs": 0, "type": "frame", "payload": { "matchId": "match-001", "timestamp": 1700000000000, "players": [], "ball": { "x": 52.5, "y": 34, "z": 0 } } },
+    { "offsetMs": 1200, "type": "event", "payload": { "id": "evt-001", "matchId": "match-001", "type": "shot", "minute": 5, "teamSide": "home" } },
+    { "offsetMs": 1250, "type": "market.new", "payload": { "id": "mkt-001", "matchId": "match-001", "question": "Nächstes Tor?", "category": "Tor", "outcomes": [{ "id": "o1", "label": "Heimteam", "decimalOdds": 2.1, "impliedProbability": 0.48 }, { "id": "o2", "label": "Auswärtsteam", "decimalOdds": 1.9, "impliedProbability": 0.52 }], "ttlSeconds": 30, "openedAt": 1700000001250, "status": "open" } },
+    { "offsetMs": 31250, "type": "market.settled", "payload": { "id": "mkt-001", "winningOutcomeId": "o1" } }
+  ]
+}

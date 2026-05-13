@@ -1,0 +1,11 @@
+.banner {
+  background: var(--dark4);
+  color: var(--text-muted);
+  font: 700 12px/1 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  width: 100%;
+  text-align: center;
+  /* Not dismissible — no close button, no pointer interaction */
+  user-select: none;
+}

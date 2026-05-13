@@ -1,0 +1,55 @@
+/* MatchListPage.module.css
+ *
+ * Scoped styles for the Live Predict match listing page.
+ * Reuses `.section-header` and `.section-title` from the existing site.
+ *
+ * Validates: Requirements 4.1, 4.4, 4.5, 4.6
+ */
+
+.page {
+  padding: 16px 0;
+}
+
+/* Responsive grid of MatchCard components */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* Transparent button wrapper so MatchCard retains its own visual style
+   while the whole card area is keyboard-accessible and clickable. */
+.cardWrapper {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+}
+
+.cardWrapper:focus-visible {
+  outline: 2px solid var(--red, #d2001f);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Empty state */
+.emptyState {
+  margin-top: 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.emptyMessage {
+  font: 400 16px/1.4 'Roboto Condensed', sans-serif;
+  color: var(--text-muted, #888);
+}
+
+.nextScheduled {
+  font: 700 13px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-dim, #555);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

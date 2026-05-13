@@ -1,0 +1,47 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--text-muted);
+  font: 700 13px/1 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 150ms, border-color 150ms;
+}
+
+.pill:hover {
+  color: var(--text);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.pill.active {
+  color: var(--text);
+  border-bottom-color: var(--red);
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  background: var(--dark3);
+  border-radius: 9px;
+  font: 700 11px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-muted);
+}
+
+.pill.active .count {
+  background: var(--red);
+  color: var(--text);
+}

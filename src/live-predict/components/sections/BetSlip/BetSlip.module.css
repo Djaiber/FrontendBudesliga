@@ -1,0 +1,218 @@
+/* BetSlip.module.css
+ *
+ * Styles for the BetSlip modal component.
+ * Validates: Requirements 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 17.3
+ */
+
+/* ── Backdrop ──────────────────────────────────────────────────────────────── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  /* Fade in */
+  animation: fadeIn 150ms ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Dialog ────────────────────────────────────────────────────────────────── */
+.dialog {
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  width: min(420px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* Slide up */
+  animation: slideUp 150ms ease forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── Title (market question) ───────────────────────────────────────────────── */
+.title {
+  margin: 0;
+  font: 700 16px/1.4 'Roboto Condensed', sans-serif;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ── Outcome summary row ───────────────────────────────────────────────────── */
+.outcomeSummary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--dark4);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.outcomeLabel {
+  font: 700 13px/1 'Roboto Condensed', sans-serif;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.outcomeOdds {
+  font: 700 22px/1 'Oswald', sans-serif;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Field group (label + input) ───────────────────────────────────────────── */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font: 700 11px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.amountInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  background: var(--dark4);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font: 400 16px/1 'Roboto', sans-serif;
+  outline: none;
+  transition: border-color 150ms;
+  /* Remove browser spin buttons for a cleaner look */
+  -moz-appearance: textfield;
+}
+
+.amountInput::-webkit-outer-spin-button,
+.amountInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.amountInput:focus {
+  border-color: var(--red);
+}
+
+.amountInput:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.amountInput:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Payout row ────────────────────────────────────────────────────────────── */
+.payoutRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--dark4);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.payoutLabel {
+  font: 700 11px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.payoutValue {
+  font: 700 20px/1 'Oswald', sans-serif;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Inline error ──────────────────────────────────────────────────────────── */
+.errorMessage {
+  margin: 0;
+  padding: 8px 12px;
+  background: rgba(210, 0, 31, 0.12);
+  border: 1px solid rgba(210, 0, 31, 0.4);
+  border-radius: 4px;
+  font: 400 13px/1.4 'Roboto', sans-serif;
+  color: var(--red);
+}
+
+/* ── Action buttons ────────────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Shared button base */
+.confirmButton,
+.cancelButton {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font: 700 13px/1 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 150ms, border-color 150ms, opacity 150ms;
+  border: 1px solid transparent;
+}
+
+.confirmButton:focus-visible,
+.cancelButton:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.confirmButton:disabled,
+.cancelButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Confirm — primary action */
+.confirmButton {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+
+.confirmButton:hover:not(:disabled) {
+  background: #b8001a;
+  border-color: #b8001a;
+}
+
+/* Cancel — secondary action */
+.cancelButton {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.cancelButton:hover:not(:disabled) {
+  background: var(--dark4);
+  color: var(--text);
+  border-color: var(--text-dim);
+}

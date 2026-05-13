@@ -1,0 +1,96 @@
+/* Scoreboard.module.css
+ *
+ * Sports-terminal style score display for the match detail left column.
+ * Score digits use Oswald 56px font-weight 300 as specified in the design.
+ *
+ * Validates: Requirements 6.1, 6.2, 6.3
+ */
+
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--dark2, #141414);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+}
+
+/* Team names + score row */
+.scoreRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Team name */
+.teamName {
+  font: 700 14px/1 'Roboto Condensed', sans-serif;
+  color: var(--text, #fff);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teamNameHome {
+  text-align: right;
+}
+
+.teamNameAway {
+  text-align: left;
+}
+
+/* Score block: digits + separator */
+.scoreBlock {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* Score digits — Oswald 56px font-weight 300 (sports terminal style) */
+.score {
+  font: 300 56px/1 'Oswald', sans-serif;
+  color: var(--text, #fff);
+  min-width: 40px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.scoreSep {
+  font: 300 56px/1 'Oswald', sans-serif;
+  color: var(--text-muted, #888);
+  padding: 0 4px;
+}
+
+/* Match minute + LiveDot row */
+.minuteRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.minute {
+  font: 400 14px/1 'Oswald', sans-serif;
+  color: var(--text-muted, #888);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Loading / placeholder state */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--dark2, #141414);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+  font: 400 14px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-muted, #888);
+}

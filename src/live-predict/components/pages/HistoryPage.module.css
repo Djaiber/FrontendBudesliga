@@ -1,0 +1,142 @@
+/* HistoryPage.module.css
+ *
+ * Scoped styles for the Live Predict history page (/live-predict/meine-wetten).
+ * Reuses `.standings-table` from the existing site for the table base styles.
+ *
+ * Validates: Requirements 13.1, 13.2, 13.3, 13.4, 13.5
+ */
+
+.page {
+  padding: 16px 0;
+}
+
+/* ── Filter controls ──────────────────────────────────────────────────────── */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filterLabel {
+  font: 700 11px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filterSelect {
+  background: var(--dark3, #1e1e1e);
+  color: var(--text, #fff);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font: 400 13px/1 'Roboto Condensed', sans-serif;
+  cursor: pointer;
+  min-width: 160px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.filterSelect:focus {
+  outline: 2px solid var(--red, #d2001f);
+  outline-offset: 1px;
+}
+
+/* ── Summary row ──────────────────────────────────────────────────────────── */
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 12px 16px;
+  background: var(--dark3, #1e1e1e);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summaryLabel {
+  font: 700 11px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summaryValue {
+  font: 700 20px/1 'Oswald', sans-serif;
+  color: var(--text, #fff);
+  font-variant-numeric: tabular-nums;
+}
+
+.summaryValuePositive {
+  color: #4caf50;
+}
+
+.summaryValueNegative {
+  color: var(--red, #d2001f);
+}
+
+/* ── Table wrapper ────────────────────────────────────────────────────────── */
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+/* ── Status badges ────────────────────────────────────────────────────────── */
+
+.statusBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font: 700 11px/1.4 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.statusPending {
+  background: rgba(136, 136, 136, 0.15);
+  color: var(--text-muted, #888);
+}
+
+.statusWon {
+  background: rgba(76, 175, 80, 0.15);
+  color: #4caf50;
+}
+
+.statusLost {
+  background: rgba(210, 0, 31, 0.15);
+  color: var(--red, #d2001f);
+}
+
+.statusCancelled {
+  background: rgba(85, 85, 85, 0.15);
+  color: var(--text-dim, #555);
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+
+.emptyState {
+  margin-top: 32px;
+  text-align: center;
+  font: 400 16px/1.4 'Roboto Condensed', sans-serif;
+  color: var(--text-muted, #888);
+}

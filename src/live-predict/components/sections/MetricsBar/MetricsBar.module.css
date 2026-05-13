@@ -1,0 +1,88 @@
+/* MetricsBar.module.css
+ *
+ * Live statistics bar displayed above the PitchView in the match detail
+ * left column. Shows possession %, xG, shots, and sprint count.
+ *
+ * Labels: Roboto Condensed 12px, var(--text-muted), uppercase.
+ * Values: Roboto Condensed 14px, var(--text).
+ *
+ * Validates: Requirements 8.1, 8.2, 8.3
+ */
+
+.metricsBar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 8px 12px;
+  background: var(--dark2, #141414);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+}
+
+/* Individual metric cell */
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Label — Roboto Condensed 12px, --text-muted, uppercase */
+.label {
+  font: 700 12px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+/* Dual value row (home / away) */
+.dualValue {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+/* Numeric value — slightly larger, primary text colour */
+.value {
+  font: 700 14px/1 'Roboto Condensed', sans-serif;
+  color: var(--text, #fff);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Single value (sprint count) */
+.valueSingle {
+  font: 700 14px/1 'Roboto Condensed', sans-serif;
+  color: var(--text, #fff);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Separator between home and away values */
+.teamSep {
+  font: 400 12px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-dim, #555);
+}
+
+/* Team short-name tags below the values */
+.teamNames {
+  display: flex;
+  gap: 8px;
+}
+
+.teamTag {
+  font: 400 10px/1 'Roboto Condensed', sans-serif;
+  color: var(--text-dim, #555);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Vertical divider between metric cells */
+.divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border, #2a2a2a);
+  flex-shrink: 0;
+  margin: 0 8px;
+}
