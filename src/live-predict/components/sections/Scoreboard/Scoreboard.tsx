@@ -1,5 +1,6 @@
 import { useMatchStore } from '../../../store/matchStore';
 import { LiveDot } from '../../atoms/LiveDot/LiveDot';
+import TeamLogo from '../../../../components/TeamLogo';
 import { de } from '../../../i18n/de';
 import styles from './Scoreboard.module.css';
 
@@ -35,10 +36,13 @@ export function Scoreboard() {
     <section className={styles.scoreboard} aria-label={`${homeTeam.name} ${homeScore} – ${awayScore} ${awayTeam.name}`}>
       {/* Team names and score digits */}
       <div className={styles.scoreRow}>
-        {/* Home team name */}
-        <span className={`${styles.teamName} ${styles.teamNameHome}`}>
-          {homeTeam.name}
-        </span>
+        {/* Home team logo and name */}
+        <div className={styles.teamBlock}>
+          <TeamLogo team={homeTeam.shortName} size="medium" />
+          <span className={`${styles.teamName} ${styles.teamNameHome}`}>
+            {homeTeam.name}
+          </span>
+        </div>
 
         {/* Score block */}
         <div className={styles.scoreBlock}>
@@ -47,10 +51,13 @@ export function Scoreboard() {
           <span className={styles.score}>{awayScore}</span>
         </div>
 
-        {/* Away team name */}
-        <span className={`${styles.teamName} ${styles.teamNameAway}`}>
-          {awayTeam.name}
-        </span>
+        {/* Away team name and logo */}
+        <div className={styles.teamBlock}>
+          <span className={`${styles.teamName} ${styles.teamNameAway}`}>
+            {awayTeam.name}
+          </span>
+          <TeamLogo team={awayTeam.shortName} size="medium" />
+        </div>
       </div>
 
       {/* Match minute with LiveDot when live */}

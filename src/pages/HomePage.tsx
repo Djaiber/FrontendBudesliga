@@ -3,6 +3,7 @@
  * Displays upcoming matches, standings, and news
  */
 import styles from './HomePage.module.css';
+import TeamLogo from '../components/TeamLogo';
 
 export default function HomePage() {
   return (
@@ -15,12 +16,12 @@ export default function HomePage() {
               <div className="match-time">08.05. 13:30</div>
               <div className="match-teams">
                 <div className="team">
-                  <div className="team-logo">🟡</div>
+                  <TeamLogo team="BVB" size="medium" />
                   <div className="team-name">BVB</div>
                 </div>
                 <div className="match-score">3 : 2</div>
                 <div className="team">
-                  <div className="team-logo">🦅</div>
+                  <TeamLogo team="SGE" size="medium" />
                   <div className="team-name">SGE</div>
                 </div>
               </div>
@@ -31,12 +32,12 @@ export default function HomePage() {
               <div className="match-time">09.05. 8:30</div>
               <div className="match-teams">
                 <div className="team">
-                  <div className="team-logo">🔴</div>
+                  <TeamLogo team="RBL" size="medium" />
                   <div className="team-name">RBL</div>
                 </div>
                 <div className="match-score">vs</div>
                 <div className="team">
-                  <div className="team-logo">⚪</div>
+                  <TeamLogo team="KAI" size="medium" />
                   <div className="team-name">KAI</div>
                 </div>
               </div>
@@ -47,12 +48,12 @@ export default function HomePage() {
               <div className="match-time">09.05. 11:30</div>
               <div className="match-teams">
                 <div className="team">
-                  <div className="team-logo">⚪</div>
+                  <TeamLogo team="VFB" size="medium" />
                   <div className="team-name">VFB</div>
                 </div>
                 <div className="match-score">vs</div>
                 <div className="team">
-                  <div className="team-logo">🔴</div>
+                  <TeamLogo team="B04" size="medium" />
                   <div className="team-name">B04</div>
                 </div>
               </div>
@@ -63,12 +64,12 @@ export default function HomePage() {
               <div className="match-time">10.05. 8:30</div>
               <div className="match-teams">
                 <div className="team">
-                  <div className="team-logo">⚪</div>
+                  <TeamLogo team="KOE" size="medium" />
                   <div className="team-name">KOE</div>
                 </div>
                 <div className="match-score">vs</div>
                 <div className="team">
-                  <div className="team-logo">🟢</div>
+                  <TeamLogo team="BMG" size="medium" />
                   <div className="team-name">BMG</div>
                 </div>
               </div>
@@ -79,12 +80,12 @@ export default function HomePage() {
               <div className="match-time">10.05. 10:30</div>
               <div className="match-teams">
                 <div className="team">
-                  <div className="team-logo">🔵</div>
+                  <TeamLogo team="TSG" size="medium" />
                   <div className="team-name">TSG</div>
                 </div>
                 <div className="match-score">vs</div>
                 <div className="team">
-                  <div className="team-logo">🟢</div>
+                  <TeamLogo team="SVW" size="medium" />
                   <div className="team-name">SVW</div>
                 </div>
               </div>
@@ -95,12 +96,12 @@ export default function HomePage() {
               <div className="match-time">10.05. 12:30</div>
               <div className="match-teams">
                 <div className="team">
-                  <div className="team-logo">🟢</div>
+                  <TeamLogo team="WOB" size="medium" />
                   <div className="team-name">WOB</div>
                 </div>
                 <div className="match-score">vs</div>
                 <div className="team">
-                  <div className="team-logo">🔴</div>
+                  <TeamLogo team="FCB" size="medium" />
                   <div className="team-name">FCB</div>
                 </div>
               </div>

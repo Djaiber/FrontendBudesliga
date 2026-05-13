@@ -8,6 +8,7 @@ A real-time mini-betting feature for the Bundesliga website, built with React 18
 - **Mini-Markets**: Short-lived betting markets (12-60 seconds) with live odds
 - **Match Detail View**: Two-column layout with pitch view, metrics, and markets feed
 - **Bet History**: Track your bets and performance across all matches
+- **Team Icons**: SVG-based Bundesliga team logos with official branding colors
 - **Demo Mode**: Fully functional with mock data layer (no backend required)
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Accessibility**: Full keyboard navigation and screen reader support
@@ -72,6 +73,13 @@ npm run typecheck
 src/
 ├── config/              # Configuration (mock vs real data source)
 ├── i18n/                # Internationalization (German strings)
+├── components/          # Shared components
+│   ├── TeamLogo.tsx     # Team logo component
+│   └── icons/           # SVG team icons
+├── pages/               # Page components
+│   └── HomePage.tsx     # Bundesliga homepage
+├── styles/              # Global styles
+│   └── bundesliga.css   # Bundesliga design system
 ├── types/               # TypeScript type definitions
 │   ├── match.ts         # Match, TeamInfo, MatchStatus
 │   ├── frame.ts         # Frame, PlayerPosition, BallPosition
@@ -85,12 +93,13 @@ src/
 │   └── betStore.ts      # Bets and P&L state
 ├── transport/           # WebSocket and Mock data layer
 ├── hooks/               # React hooks (useMatchStream)
-├── components/
-│   ├── layout/          # Layout components
-│   ├── pages/           # Page components
-│   ├── sections/        # Section components (Scoreboard, PitchView, etc.)
-│   └── atoms/           # Atomic UI components
-└── router/              # React Router configuration
+└── live-predict/        # Live Predict feature
+    ├── components/
+    │   ├── layout/      # Layout components
+    │   ├── pages/       # Page components
+    │   ├── sections/    # Section components (Scoreboard, PitchView, etc.)
+    │   └── atoms/       # Atomic UI components
+    └── router/          # React Router configuration
 ```
 
 ## 🎯 Key Technologies

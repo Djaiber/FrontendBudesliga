@@ -250,10 +250,6 @@ body {
   flex: 1;
 }
 
-.team-logo {
-  font-size: 24px;
-}
-
 .team-name {
   font-family: var(--font-display);
   font-size: 16px;

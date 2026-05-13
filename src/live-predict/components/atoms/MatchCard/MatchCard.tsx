@@ -1,5 +1,6 @@
 import type { Match } from '../../../types/match';
 import { LiveDot } from '../LiveDot/LiveDot';
+import TeamLogo from '../../../../components/TeamLogo';
 import styles from './MatchCard.module.css';
 
 export interface MatchCardProps {
@@ -41,13 +42,7 @@ export function MatchCard({ match }: MatchCardProps) {
       <div className={styles.matchRow}>
         {/* Home team */}
         <div className={styles.team}>
-          <img
-            src={homeTeam.logoUrl}
-            alt={homeTeam.name}
-            width={28}
-            height={28}
-            className={styles.logo}
-          />
+          <TeamLogo team={homeTeam.shortName} size="small" />
           <span className={styles.teamName}>{homeTeam.name}</span>
         </div>
 
@@ -61,13 +56,7 @@ export function MatchCard({ match }: MatchCardProps) {
         {/* Away team */}
         <div className={`${styles.team} ${styles.teamAway}`}>
           <span className={styles.teamName}>{awayTeam.name}</span>
-          <img
-            src={awayTeam.logoUrl}
-            alt={awayTeam.name}
-            width={28}
-            height={28}
-            className={styles.logo}
-          />
+          <TeamLogo team={awayTeam.shortName} size="small" />
         </div>
       </div>
 

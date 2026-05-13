@@ -26,13 +26,21 @@
   width: 100%;
 }
 
+/* Team block: logo + name */
+.teamBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0; /* Allow text truncation */
+}
+
 /* Team name */
 .teamName {
   font: 700 14px/1 'Roboto Condensed', sans-serif;
   color: var(--text, #fff);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
