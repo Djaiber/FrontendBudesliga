@@ -15,6 +15,7 @@ import {
   signUp,
   confirmSignUp as amplifyConfirmSignUp,
   getCurrentUser,
+  fetchAuthSession,
 } from 'aws-amplify/auth';
 
 export interface AuthUser {
@@ -102,7 +103,14 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
   checkSession: async () => {
     set({ isLoading: true });
     try {
-      const cognitoUser = await getCurrentUser();
+      const [cognitoUser, session] = await Promise.all([
+        getCurrentUser(),
+        fetchAuthSession(),
+      ]);
+      // Treat session as valid only when access tokens are present
+      if (!session.tokens?.accessToken) {
+        throw new Error('No valid tokens');
+      }
       set({
         user: { username: cognitoUser.username, email: cognitoUser.username },
         isAuthenticated: true,

@@ -1,3 +1,4 @@
+//src/live-predict/router/index.tsx
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import LivePredictLayout from '../components/layout/LivePredictLayout';
@@ -66,7 +67,7 @@ function LoadingSpinner() {
 export const router = createBrowserRouter([
   {
     path: '/',
-    loader: () => Response.redirect('/live-predict'),
+    loader: () => Response.redirect('/login'),
   },
 
   // ── Public auth routes ──────────────────────────────────
