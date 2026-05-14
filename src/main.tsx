@@ -5,11 +5,16 @@
 import { StrictMode, lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './live-predict/config/cognito';
 import './styles/bundesliga.css';
 import HomePage from './pages/HomePage';
 import LivePredictLayout from './live-predict/components/layout/LivePredictLayout';
 import MatchListPage from './live-predict/components/pages/MatchListPage';
 import HistoryPage from './live-predict/components/pages/HistoryPage';
+import LoginPage from './live-predict/components/pages/LoginPage';
+import RegisterPage from './live-predict/components/pages/RegisterPage';
+import ConfirmPage from './live-predict/components/pages/ConfirmPage';
+import { RequireAuth } from './live-predict/components/auth/RequireAuth';
 import { BundesligaLogo } from './components/icons/BundesligaLogo';
 import { initAdidasClub } from './scripts/adidasClub';
 
@@ -46,11 +51,33 @@ function LoadingSpinner() {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    loader: () => Response.redirect('/login'),
   },
   {
+    path: '/home',
+    element: <HomePage />,
+  },
+  // ── Public auth routes ──────────────────────────────────
+  {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
+  },
+  {
+    path: '/confirm-account',
+    element: <ConfirmPage />,
+  },
+  // ── Protected routes ────────────────────────────────────
+  {
     path: '/live-predict',
-    element: <LivePredictLayout />,
+    element: (
+      <RequireAuth>
+        <LivePredictLayout />
+      </RequireAuth>
+    ),
     children: [
       {
         index: true,

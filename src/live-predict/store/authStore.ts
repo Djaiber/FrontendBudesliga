@@ -43,7 +43,7 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
   // ── State ──────────────────────────────────────────────────
   user: null,
   isAuthenticated: false,
-  isLoading: false,
+  isLoading: true,
   error: null,
 
   // ── Actions ────────────────────────────────────────────────
