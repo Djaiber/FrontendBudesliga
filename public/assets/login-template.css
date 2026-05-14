@@ -1,0 +1,250 @@
+/* ============================================================
+   Bundesliga Auth Pages — login-template.css
+   Used by: LoginPage, RegisterPage, ConfirmPage (via AuthLayout)
+   ============================================================ */
+
+/* ── Reset / base ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Auth layout wrapper ──────────────────────────────────── */
+.auth-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark, #0a0a0a);
+  padding: 24px 16px;
+}
+
+/* ── Logo ─────────────────────────────────────────────────── */
+.auth-logo {
+  display: block;
+  margin: 0 auto 32px;
+  width: 80px;
+  height: auto;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--dark2, #141414);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 6px;
+  padding: 40px 36px;
+}
+
+/* ── Heading ──────────────────────────────────────────────── */
+.auth-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text, #fff);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.auth-subtitle {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted, #888);
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+/* ── Form ─────────────────────────────────────────────────── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Field group ──────────────────────────────────────────── */
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-label {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted, #888);
+}
+
+.auth-input {
+  width: 100%;
+  background: var(--dark3, #1e1e1e);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+  color: var(--text, #fff);
+  outline: none;
+  transition: border-color 150ms;
+}
+
+.auth-input::placeholder {
+  color: var(--text-dim, #555);
+}
+
+.auth-input:focus {
+  border-color: var(--red, #d2001f);
+}
+
+.auth-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Submit button ────────────────────────────────────────── */
+.auth-btn {
+  width: 100%;
+  background: var(--red, #d2001f);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 150ms, transform 150ms;
+  margin-top: 4px;
+}
+
+.auth-btn:hover:not(:disabled) {
+  background: #b50019;
+  transform: translateY(-1px);
+}
+
+.auth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Error message ────────────────────────────────────────── */
+.auth-error {
+  background: rgba(210, 0, 31, 0.12);
+  border: 1px solid rgba(210, 0, 31, 0.4);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  color: #ff6b6b;
+  line-height: 1.4;
+}
+
+/* ── Success message ──────────────────────────────────────── */
+.auth-success {
+  background: rgba(0, 200, 100, 0.1);
+  border: 1px solid rgba(0, 200, 100, 0.3);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  color: #4caf82;
+  line-height: 1.4;
+}
+
+/* ── Info box (used on confirm page) ─────────────────────── */
+.auth-info {
+  background: var(--dark3, #1e1e1e);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+  padding: 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted, #888);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.auth-info strong {
+  color: var(--text, #fff);
+  font-weight: 700;
+}
+
+/* ── Footer link row ──────────────────────────────────────── */
+.auth-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted, #888);
+}
+
+.auth-link {
+  color: var(--red, #d2001f);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 150ms;
+}
+
+.auth-link:hover {
+  color: #ff3355;
+  text-decoration: underline;
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+.auth-divider {
+  border: none;
+  border-top: 1px solid var(--border, #2a2a2a);
+  margin: 8px 0;
+}
+
+/* ── Code input (6-digit OTP) ─────────────────────────────── */
+.auth-code-input {
+  width: 100%;
+  background: var(--dark3, #1e1e1e);
+  border: 1px solid var(--border, #2a2a2a);
+  border-radius: 4px;
+  padding: 14px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text, #fff);
+  text-align: center;
+  letter-spacing: 12px;
+  outline: none;
+  transition: border-color 150ms;
+  font-variant-numeric: tabular-nums;
+}
+
+.auth-code-input:focus {
+  border-color: var(--red, #d2001f);
+}
+
+/* ── Spinner inside button ────────────────────────────────── */
+.auth-btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: auth-spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes auth-spin {
+  to { transform: rotate(360deg); }
+}

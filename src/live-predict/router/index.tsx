@@ -3,6 +3,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import LivePredictLayout from '../components/layout/LivePredictLayout';
 import MatchListPage from '../components/pages/MatchListPage';
 import HistoryPage from '../components/pages/HistoryPage';
+import LoginPage from '../components/pages/LoginPage';
+import RegisterPage from '../components/pages/RegisterPage';
+import ConfirmPage from '../components/pages/ConfirmPage';
+import { RequireAuth } from '../components/auth/RequireAuth';
 
 /**
  * Code-split: MatchDetailPage is only loaded when the user navigates to
@@ -46,22 +50,47 @@ function LoadingSpinner() {
 /**
  * Application router.
  *
- * Route tree:
- *   /live-predict                → LivePredictLayout (shell + DemomodusBanner)
+ * Public routes:
+ *   /login            → LoginPage
+ *   /register         → RegisterPage
+ *   /confirm-account  → ConfirmPage
+ *
+ * Protected routes (wrapped in RequireAuth):
+ *   /live-predict                → LivePredictLayout
  *     index                      → MatchListPage
- *     :matchId                   → MatchDetailPage (lazy, wrapped in Suspense)
+ *     :matchId                   → MatchDetailPage (lazy)
  *     meine-wetten               → HistoryPage
  *
  * Validates: Requirements 2.1, 16.4, 19.2
  */
 export const router = createBrowserRouter([
-   {
+  {
     path: '/',
-    loader: () => Response.redirect('/live-predict'),  // ← add this
+    loader: () => Response.redirect('/live-predict'),
+  },
+
+  // ── Public auth routes ──────────────────────────────────
+  {
+    path: '/login',
+    element: <LoginPage />,
   },
   {
+    path: '/register',
+    element: <RegisterPage />,
+  },
+  {
+    path: '/confirm-account',
+    element: <ConfirmPage />,
+  },
+
+  // ── Protected routes ────────────────────────────────────
+  {
     path: '/live-predict',
-    element: <LivePredictLayout />,
+    element: (
+      <RequireAuth>
+        <LivePredictLayout />
+      </RequireAuth>
+    ),
     children: [
       {
         index: true,
