@@ -14,6 +14,7 @@ export function RegisterPage() {
   const navigate = useNavigate();
   const { register, isLoading, error, clearError } = useAuthStore();
 
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -23,6 +24,11 @@ export function RegisterPage() {
     e.preventDefault();
     setLocalError(null);
     clearError();
+
+    if (!name.trim()) {
+      setLocalError('Bitte gib deinen Namen ein.');
+      return;
+    }
 
     if (password !== confirmPassword) {
       setLocalError('Die Passwörter stimmen nicht überein.');
@@ -34,7 +40,7 @@ export function RegisterPage() {
       return;
     }
 
-    await register(email, password);
+    await register(email, password, name.trim());
 
     if (!useAuthStore.getState().error) {
       navigate('/confirm-account', { state: { email } });
@@ -53,6 +59,21 @@ export function RegisterPage() {
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           {displayError && <p className="auth-error">{displayError}</p>}
+
+          <div className="auth-field">
+            <label htmlFor="name" className="auth-label">Name</label>
+            <input
+              id="name"
+              type="text"
+              className="auth-input"
+              placeholder="Dein vollständiger Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              autoComplete="name"
+              disabled={isLoading}
+            />
+          </div>
 
           <div className="auth-field">
             <label htmlFor="email" className="auth-label">E-Mail</label>

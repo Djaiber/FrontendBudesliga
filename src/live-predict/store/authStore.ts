@@ -33,7 +33,7 @@ interface AuthState {
 interface AuthActions {
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+  register: (email: string, password: string, name: string) => Promise<void>;
   confirmSignUp: (email: string, code: string) => Promise<void>;
   checkSession: () => Promise<void>;
   clearError: () => void;
@@ -74,13 +74,18 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
     }
   },
 
-  register: async (email, password) => {
+  register: async (email, password, name) => {
     set({ isLoading: true, error: null });
     try {
       await signUp({
         username: email,
         password,
-        options: { userAttributes: { email } },
+        options: {
+          userAttributes: {
+            email,
+            name,
+          },
+        },
       });
       set({ isLoading: false });
     } catch (err) {
