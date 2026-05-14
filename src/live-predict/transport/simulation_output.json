@@ -10,9 +10,252 @@
     "openMarketCount": 0
   },
   "messages": [
-    { "offsetMs": 0, "type": "frame", "payload": { "matchId": "match-001", "timestamp": 1700000000000, "players": [], "ball": { "x": 52.5, "y": 34, "z": 0 } } },
-    { "offsetMs": 1200, "type": "event", "payload": { "id": "evt-001", "matchId": "match-001", "type": "shot", "minute": 5, "teamSide": "home" } },
-    { "offsetMs": 1250, "type": "market.new", "payload": { "id": "mkt-001", "matchId": "match-001", "question": "Nächstes Tor?", "category": "Tor", "outcomes": [{ "id": "o1", "label": "Heimteam", "decimalOdds": 2.1, "impliedProbability": 0.48 }, { "id": "o2", "label": "Auswärtsteam", "decimalOdds": 1.9, "impliedProbability": 0.52 }], "ttlSeconds": 30, "openedAt": 1700000001250, "status": "open" } },
-    { "offsetMs": 31250, "type": "market.settled", "payload": { "id": "mkt-001", "winningOutcomeId": "o1" } }
+    {
+      "offsetMs": 0,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000000000,
+        "players": [
+          { "playerId": "home-1", "jerseyNumber": 1, "teamSide": "home", "x": 5, "y": 34, "speedKmh": 0 },
+          { "playerId": "home-2", "jerseyNumber": 2, "teamSide": "home", "x": 20, "y": 15, "speedKmh": 0 },
+          { "playerId": "home-3", "jerseyNumber": 3, "teamSide": "home", "x": 20, "y": 28, "speedKmh": 0 },
+          { "playerId": "home-4", "jerseyNumber": 4, "teamSide": "home", "x": 20, "y": 40, "speedKmh": 0 },
+          { "playerId": "home-5", "jerseyNumber": 5, "teamSide": "home", "x": 20, "y": 53, "speedKmh": 0 },
+          { "playerId": "home-6", "jerseyNumber": 6, "teamSide": "home", "x": 40, "y": 15, "speedKmh": 0 },
+          { "playerId": "home-7", "jerseyNumber": 7, "teamSide": "home", "x": 40, "y": 28, "speedKmh": 0 },
+          { "playerId": "home-8", "jerseyNumber": 8, "teamSide": "home", "x": 40, "y": 40, "speedKmh": 0 },
+          { "playerId": "home-9", "jerseyNumber": 9, "teamSide": "home", "x": 40, "y": 53, "speedKmh": 0 },
+          { "playerId": "home-10", "jerseyNumber": 10, "teamSide": "home", "x": 60, "y": 25, "speedKmh": 0 },
+          { "playerId": "home-11", "jerseyNumber": 11, "teamSide": "home", "x": 60, "y": 43, "speedKmh": 0 },
+          { "playerId": "away-1", "jerseyNumber": 1, "teamSide": "away", "x": 100, "y": 34, "speedKmh": 0 },
+          { "playerId": "away-2", "jerseyNumber": 2, "teamSide": "away", "x": 85, "y": 15, "speedKmh": 0 },
+          { "playerId": "away-3", "jerseyNumber": 3, "teamSide": "away", "x": 85, "y": 28, "speedKmh": 0 },
+          { "playerId": "away-4", "jerseyNumber": 4, "teamSide": "away", "x": 85, "y": 40, "speedKmh": 0 },
+          { "playerId": "away-5", "jerseyNumber": 5, "teamSide": "away", "x": 85, "y": 53, "speedKmh": 0 },
+          { "playerId": "away-6", "jerseyNumber": 6, "teamSide": "away", "x": 65, "y": 15, "speedKmh": 0 },
+          { "playerId": "away-7", "jerseyNumber": 7, "teamSide": "away", "x": 65, "y": 28, "speedKmh": 0 },
+          { "playerId": "away-8", "jerseyNumber": 8, "teamSide": "away", "x": 65, "y": 40, "speedKmh": 0 },
+          { "playerId": "away-9", "jerseyNumber": 9, "teamSide": "away", "x": 65, "y": 53, "speedKmh": 0 },
+          { "playerId": "away-10", "jerseyNumber": 10, "teamSide": "away", "x": 45, "y": 25, "speedKmh": 0 },
+          { "playerId": "away-11", "jerseyNumber": 11, "teamSide": "away", "x": 45, "y": 43, "speedKmh": 0 }
+        ],
+        "ball": { "x": 52.5, "y": 34, "z": 0 }
+      }
+    },
+    {
+      "offsetMs": 400,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000000400,
+        "players": [
+          { "playerId": "home-10", "jerseyNumber": 10, "teamSide": "home", "x": 62, "y": 23, "speedKmh": 28 },
+          { "playerId": "home-11", "jerseyNumber": 11, "teamSide": "home", "x": 62, "y": 41, "speedKmh": 26 },
+          { "playerId": "away-10", "jerseyNumber": 10, "teamSide": "away", "x": 48, "y": 28, "speedKmh": 22 },
+          { "playerId": "away-11", "jerseyNumber": 11, "teamSide": "away", "x": 48, "y": 43, "speedKmh": 24 },
+          { "playerId": "home-7", "jerseyNumber": 7, "teamSide": "home", "x": 42, "y": 28, "speedKmh": 16 },
+          { "playerId": "away-7", "jerseyNumber": 7, "teamSide": "away", "x": 63, "y": 28, "speedKmh": 18 }
+        ],
+        "ball": { "x": 58.2, "y": 30.5, "z": 0 }
+      }
+    },
+    {
+      "offsetMs": 800,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000000800,
+        "players": [
+          { "playerId": "home-10", "jerseyNumber": 10, "teamSide": "home", "x": 64, "y": 21, "speedKmh": 29 },
+          { "playerId": "home-11", "jerseyNumber": 11, "teamSide": "home", "x": 63, "y": 39, "speedKmh": 27 },
+          { "playerId": "away-1", "jerseyNumber": 1, "teamSide": "away", "x": 96, "y": 34, "speedKmh": 9 },
+          { "playerId": "away-4", "jerseyNumber": 4, "teamSide": "away", "x": 78, "y": 40, "speedKmh": 13 },
+          { "playerId": "away-5", "jerseyNumber": 5, "teamSide": "away", "x": 78, "y": 53, "speedKmh": 12 }
+        ],
+        "ball": { "x": 68.1, "y": 32.8, "z": 0 }
+      }
+    },
+    {
+      "offsetMs": 1200,
+      "type": "event",
+      "payload": {
+        "id": "evt-001",
+        "matchId": "match-001",
+        "type": "shot",
+        "minute": 5,
+        "teamSide": "home",
+        "playerId": "home-10",
+        "xG": 0.18,
+        "detail": "Schuss aus der Strafraumnähe"
+      }
+    },
+    {
+      "offsetMs": 1250,
+      "type": "market.new",
+      "payload": {
+        "id": "mkt-001",
+        "matchId": "match-001",
+        "question": "Nächstes Tor?",
+        "category": "Tor",
+        "outcomes": [
+          { "id": "o1", "label": "Heimteam", "decimalOdds": 2.1, "impliedProbability": 0.48 },
+          { "id": "o2", "label": "Auswärtsteam", "decimalOdds": 1.9, "impliedProbability": 0.52 }
+        ],
+        "ttlSeconds": 30,
+        "openedAt": 1700000001250,
+        "status": "open"
+      }
+    },
+    {
+      "offsetMs": 1600,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000001600,
+        "players": [
+          { "playerId": "home-10", "jerseyNumber": 10, "teamSide": "home", "x": 70, "y": 22, "speedKmh": 30 },
+          { "playerId": "home-11", "jerseyNumber": 11, "teamSide": "home", "x": 68, "y": 37, "speedKmh": 28 },
+          { "playerId": "away-4", "jerseyNumber": 4, "teamSide": "away", "x": 82, "y": 38, "speedKmh": 15 },
+          { "playerId": "away-5", "jerseyNumber": 5, "teamSide": "away", "x": 82, "y": 52, "speedKmh": 14 }
+        ],
+        "ball": { "x": 74.5, "y": 33.7, "z": 0 }
+      }
+    },
+    {
+      "offsetMs": 2400,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000002400,
+        "players": [
+          { "playerId": "home-7", "jerseyNumber": 7, "teamSide": "home", "x": 44, "y": 28, "speedKmh": 20 },
+          { "playerId": "home-8", "jerseyNumber": 8, "teamSide": "home", "x": 42, "y": 38, "speedKmh": 18 },
+          { "playerId": "away-7", "jerseyNumber": 7, "teamSide": "away", "x": 62, "y": 28, "speedKmh": 22 },
+          { "playerId": "away-8", "jerseyNumber": 8, "teamSide": "away", "x": 63, "y": 40, "speedKmh": 20 }
+        ],
+        "ball": { "x": 52, "y": 34, "z": 0 }
+      }
+    },
+    {
+      "offsetMs": 2800,
+      "type": "event",
+      "payload": {
+        "id": "evt-002",
+        "matchId": "match-001",
+        "type": "foul",
+        "minute": 7,
+        "teamSide": "away",
+        "playerId": "away-8",
+        "detail": "Foul im Mittelfeld"
+      }
+    },
+    {
+      "offsetMs": 3200,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000003200,
+        "players": [
+          { "playerId": "away-10", "jerseyNumber": 10, "teamSide": "away", "x": 50, "y": 26, "speedKmh": 18 },
+          { "playerId": "away-11", "jerseyNumber": 11, "teamSide": "away", "x": 50, "y": 42, "speedKmh": 18 },
+          { "playerId": "home-6", "jerseyNumber": 6, "teamSide": "home", "x": 42, "y": 16, "speedKmh": 19 },
+          { "playerId": "home-9", "jerseyNumber": 9, "teamSide": "home", "x": 45, "y": 54, "speedKmh": 16 }
+        ],
+        "ball": { "x": 46.4, "y": 31.2, "z": 0 }
+      }
+    },
+    {
+      "offsetMs": 4000,
+      "type": "event",
+      "payload": {
+        "id": "evt-003",
+        "matchId": "match-001",
+        "type": "shot",
+        "minute": 9,
+        "teamSide": "away",
+        "playerId": "away-10",
+        "xG": 0.12,
+        "detail": "Fernschuss von der Strafraumkante"
+      }
+    },
+    {
+      "offsetMs": 4050,
+      "type": "market.update",
+      "payload": {
+        "id": "mkt-001",
+        "outcomes": [
+          { "id": "o1", "label": "Heimteam", "decimalOdds": 2.05, "impliedProbability": 0.49 },
+          { "id": "o2", "label": "Auswärtsteam", "decimalOdds": 1.85, "impliedProbability": 0.51 }
+        ]
+      }
+    },
+    {
+      "offsetMs": 4200,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000004200,
+        "players": [
+          { "playerId": "away-10", "jerseyNumber": 10, "teamSide": "away", "x": 42, "y": 26, "speedKmh": 23 },
+          { "playerId": "away-11", "jerseyNumber": 11, "teamSide": "away", "x": 42, "y": 42, "speedKmh": 22 },
+          { "playerId": "home-5", "jerseyNumber": 5, "teamSide": "home", "x": 18, "y": 52, "speedKmh": 15 },
+          { "playerId": "home-9", "jerseyNumber": 9, "teamSide": "home", "x": 47, "y": 52, "speedKmh": 20 }
+        ],
+        "ball": { "x": 40.1, "y": 29.4, "z": 0 }
+      }
+    },
+    {
+      "offsetMs": 5200,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000005200,
+        "players": [
+          { "playerId": "home-10", "jerseyNumber": 10, "teamSide": "home", "x": 65, "y": 24, "speedKmh": 27 },
+          { "playerId": "home-11", "jerseyNumber": 11, "teamSide": "home", "x": 64, "y": 41, "speedKmh": 25 },
+          { "playerId": "away-4", "jerseyNumber": 4, "teamSide": "away", "x": 80, "y": 39, "speedKmh": 12 },
+          { "playerId": "away-5", "jerseyNumber": 5, "teamSide": "away", "x": 80, "y": 52, "speedKmh": 12 }
+        ],
+        "ball": { "x": 55.8, "y": 34.6, "z": 0 }
+      }
+    },
+    {
+      "offsetMs": 5600,
+      "type": "event",
+      "payload": {
+        "id": "evt-004",
+        "matchId": "match-001",
+        "type": "goal",
+        "minute": 10,
+        "teamSide": "home",
+        "playerId": "home-10",
+        "xG": 0.33,
+        "detail": "Tor nach schönem Passspiel"
+      }
+    },
+    {
+      "offsetMs": 6200,
+      "type": "market.settled",
+      "payload": {
+        "id": "mkt-001",
+        "winningOutcomeId": "o1"
+      }
+    },
+    {
+      "offsetMs": 7600,
+      "type": "frame",
+      "payload": {
+        "matchId": "match-001",
+        "timestamp": 1700000007600,
+        "players": [
+          { "playerId": "home-1", "jerseyNumber": 1, "teamSide": "home", "x": 8, "y": 34, "speedKmh": 5 },
+          { "playerId": "away-1", "jerseyNumber": 1, "teamSide": "away", "x": 99, "y": 34, "speedKmh": 4 },
+          { "playerId": "home-10", "jerseyNumber": 10, "teamSide": "home", "x": 52, "y": 25, "speedKmh": 19 },
+          { "playerId": "away-10", "jerseyNumber": 10, "teamSide": "away", "x": 58, "y": 26, "speedKmh": 18 }
+        ],
+        "ball": { "x": 55, "y": 34, "z": 0 }
+      }
+    }
   ]
 }

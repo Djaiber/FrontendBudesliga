@@ -11,6 +11,7 @@ import LivePredictLayout from './live-predict/components/layout/LivePredictLayou
 import MatchListPage from './live-predict/components/pages/MatchListPage';
 import HistoryPage from './live-predict/components/pages/HistoryPage';
 import { BundesligaLogo } from './components/icons/BundesligaLogo';
+import { initAdidasClub } from './scripts/adidasClub';
 
 // Lazy load match detail page for code splitting
 const MatchDetailPage = lazy(() => import('./live-predict/components/pages/MatchDetailPage'));
@@ -107,3 +108,6 @@ function updateActiveNav() {
 // Update on initial load and navigation
 updateActiveNav();
 window.addEventListener('popstate', updateActiveNav);
+
+// Initialize Adidas Club dropdown
+initAdidasClub();

@@ -123,6 +123,12 @@ body {
   text-transform: uppercase;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 /* Main Navigation */
 .main-nav {
   background: var(--dark2);
@@ -395,6 +401,237 @@ body {
 
 .footer-legal a:hover {
   color: var(--text);
+}
+
+/* Adidas Club */
+.adidas-wrapper {
+  position: relative;
+}
+
+.adidas-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-primary);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: color 150ms;
+}
+
+.adidas-btn:hover {
+  color: var(--red);
+}
+
+.adidas-btn-stripes {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.adidas-btn-stripes span {
+  width: 2px;
+  height: 16px;
+  background: var(--text);
+  transition: background 150ms;
+}
+
+.adidas-btn:hover .adidas-btn-stripes span {
+  background: var(--red);
+}
+
+.adidas-chevron {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid var(--text);
+  transition: transform 200ms;
+}
+
+.adidas-btn[aria-expanded="true"] .adidas-chevron {
+  transform: rotate(180deg);
+}
+
+.adidas-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  min-width: 320px;
+  margin-top: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 200ms ease;
+  pointer-events: none;
+}
+
+.adidas-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.adidas-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--dark3);
+}
+
+.adidas-dropdown-header-stripes {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.adidas-dropdown-header-stripes span {
+  width: 2px;
+  height: 16px;
+  background: var(--red);
+}
+
+.adidas-dropdown-header-text {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+.adidas-points-section {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.adidas-points-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.adidas-points-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+
+.adidas-points-unit {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.adidas-progress-section {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.adidas-progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.adidas-progress-top span {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.adidas-progress-top strong {
+  color: var(--text);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.adidas-bar-track {
+  height: 6px;
+  background: var(--dark4);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.adidas-bar-fill {
+  height: 100%;
+  background: var(--red);
+  width: 76.8%;
+  transition: width 200ms;
+}
+
+.adidas-progress-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.adidas-tier-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.adidas-tier-badge {
+  background: var(--red);
+  color: var(--text);
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.adidas-tier-next {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.adidas-cta {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--red);
+  color: var(--text);
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 150ms;
+}
+
+.adidas-cta:hover {
+  background: #a6001a;
 }
 
 /* Responsive */
