@@ -35,6 +35,7 @@ interface AuthActions {
   logout: () => Promise<void>;
   register: (email: string, password: string, name: string) => Promise<void>;
   confirmSignUp: (email: string, code: string) => Promise<void>;
+  confirmAndLogin: (email: string, code: string, password: string) => Promise<void>;
   checkSession: () => Promise<void>;
   clearError: () => void;
 }
@@ -102,6 +103,28 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Ungültiger oder abgelaufener Code. Bitte versuche es erneut.';
       set({ error: message, isLoading: false });
+    }
+  },
+
+  confirmAndLogin: async (email, code, password) => {
+    set({ isLoading: true, error: null });
+    try {
+      // Step 1: Confirm the email verification code
+      await amplifyConfirmSignUp({ username: email, confirmationCode: code });
+      
+      // Step 2: Automatically sign in the user
+      await signIn({ username: email, password });
+      const cognitoUser = await getCurrentUser();
+      
+      set({
+        user: { username: cognitoUser.username, email },
+        isAuthenticated: true,
+        isLoading: false,
+      });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Bestätigung oder Anmeldung fehlgeschlagen.';
+      set({ error: message, isLoading: false });
+      throw err; // Re-throw to allow component to handle
     }
   },
 

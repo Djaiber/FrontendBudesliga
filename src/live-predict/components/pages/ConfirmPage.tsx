@@ -3,7 +3,7 @@
  *
  * 6-digit OTP confirmation form.
  * Copy and tone sourced from public/assets/verification-email.html.
- * On success → navigates to /login.
+ * On success → automatically signs in user and redirects to /live-predict.
  * All class names come from public/assets/login-template.css.
  */
 import { useState, type FormEvent } from 'react';
@@ -13,6 +13,7 @@ import { useAuthStore } from '../../store/authStore';
 
 interface LocationState {
   email?: string;
+  password?: string;
 }
 
 export function ConfirmPage() {
@@ -20,9 +21,10 @@ export function ConfirmPage() {
   const location = useLocation();
   const locationState = location.state as LocationState | null;
 
-  const { confirmSignUp, isLoading, error, clearError } = useAuthStore();
+  const { confirmAndLogin, isLoading, error, clearError } = useAuthStore();
 
   const [email, setEmail] = useState(locationState?.email ?? '');
+  const [password, setPassword] = useState(locationState?.password ?? '');
   const [code, setCode] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -30,11 +32,29 @@ export function ConfirmPage() {
     e.preventDefault();
     clearError();
 
-    await confirmSignUp(email, code);
-
-    if (!useAuthStore.getState().error) {
-      setSuccess(true);
-      setTimeout(() => navigate('/login'), 2000);
+    // If password is available (from registration flow), use auto-login
+    if (password) {
+      try {
+        await confirmAndLogin(email, code, password);
+        
+        if (!useAuthStore.getState().error) {
+          setSuccess(true);
+          // Redirect to dashboard after successful auto-login
+          setTimeout(() => navigate('/live-predict'), 1500);
+        }
+      } catch {
+        // Error is already set in store
+      }
+    } else {
+      // Fallback: manual confirmation without auto-login
+      // (for cases where user navigates directly to confirm page)
+      const { confirmSignUp } = useAuthStore.getState();
+      await confirmSignUp(email, code);
+      
+      if (!useAuthStore.getState().error) {
+        setSuccess(true);
+        setTimeout(() => navigate('/login'), 2000);
+      }
     }
   };
 
@@ -50,8 +70,10 @@ export function ConfirmPage() {
 
         {success ? (
           <p className="auth-success">
-            Dein Konto wurde erfolgreich bestätigt.
-            Du kannst dich jetzt anmelden.
+            {password 
+              ? 'Dein Konto wurde erfolgreich bestätigt. Du wirst angemeldet…'
+              : 'Dein Konto wurde erfolgreich bestätigt. Du kannst dich jetzt anmelden.'
+            }
           </p>
         ) : (
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
@@ -70,6 +92,24 @@ export function ConfirmPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   autoComplete="email"
+                  disabled={isLoading}
+                />
+              </div>
+            )}
+
+            {/* Show password field only if not pre-filled from navigation state */}
+            {!locationState?.password && (
+              <div className="auth-field">
+                <label htmlFor="password" className="auth-label">Passwort</label>
+                <input
+                  id="password"
+                  type="password"
+                  className="auth-input"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="current-password"
                   disabled={isLoading}
                 />
               </div>

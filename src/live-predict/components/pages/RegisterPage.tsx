@@ -43,7 +43,7 @@ export function RegisterPage() {
     await register(email, password, name.trim());
 
     if (!useAuthStore.getState().error) {
-      navigate('/confirm-account', { state: { email } });
+      navigate('/confirm-account', { state: { email, password } });
     }
   };
 
