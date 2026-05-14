@@ -1,43 +1,157 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Konto bestätigen – Bundesliga Live Predict</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto Condensed', sans-serif;
+      line-height: 1.6;
+      background: #0a0a0a;
+      color: #fff;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 40px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #d2001f;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #888;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .code {
+      background: #1e1e1e;
+      border: 2px solid #d2001f;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 32px 0;
+      text-align: center;
+    }
+
+    .code-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 12px;
+      color: #d2001f;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .info-box {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-left: 4px solid #d2001f;
+      border-radius: 4px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .info-box strong {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .info-box p {
+      font-size: 14px;
+      color: #888;
+      text-align: left;
+      margin: 0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #2a2a2a;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .footer strong {
+      color: #d2001f;
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
-  <!--
-    Verification email copy & wording reference
-    Used by: ConfirmPage.tsx to match tone and messaging
+  <div class="container">
+    <div class="logo">
+      <div class="logo-text">BUNDESLIGA</div>
+      <div style="font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">Live Predict</div>
+    </div>
 
-    Subject: Dein Bestätigungscode für Bundesliga Live Predict
+    <h2>Konto bestätigen</h2>
+    
+    <p>
+      Wir haben dir einen 6-stelligen Bestätigungscode an deine
+      E-Mail-Adresse gesendet. Bitte gib den Code unten ein, um
+      dein Konto zu aktivieren.
+    </p>
 
-    ── Heading ──────────────────────────────────────────────
-    Konto bestätigen
+    <div class="code">
+      <div class="code-value">{####}</div>
+    </div>
 
-    ── Subtitle / instruction ───────────────────────────────
-    Wir haben dir einen 6-stelligen Bestätigungscode an deine
-    E-Mail-Adresse gesendet. Bitte gib den Code unten ein, um
-    dein Konto zu aktivieren.
+    <div class="info-box">
+      <strong>Kein Code erhalten?</strong>
+      <p>
+        Überprüfe deinen Spam-Ordner oder fordere einen neuen Code an.
+        Der Code ist 15 Minuten gültig.
+      </p>
+    </div>
 
-    ── Info box copy ────────────────────────────────────────
-    Kein Code erhalten? Überprüfe deinen Spam-Ordner oder
-    fordere einen neuen Code an.
-
-    ── Button label ─────────────────────────────────────────
-    Konto bestätigen
-
-    ── Success message ──────────────────────────────────────
-    Dein Konto wurde erfolgreich bestätigt.
-    Du kannst dich jetzt anmelden.
-
-    ── Error messages ───────────────────────────────────────
-    Ungültiger oder abgelaufener Code. Bitte versuche es erneut.
-
-    ── Tone notes ───────────────────────────────────────────
-    - Formal "du" (not "Sie")
-    - Short, direct sentences
-    - German throughout — no English strings in UI
-    - Consistent with DEMOMODUS banner tone (informative, not alarming)
-  -->
+    <div class="footer">
+      <strong>Bundesliga Live Predict</strong><br>
+      © 2026 DFL Deutsche Fußball Liga GmbH
+    </div>
+  </div>
 </body>
 </html>
