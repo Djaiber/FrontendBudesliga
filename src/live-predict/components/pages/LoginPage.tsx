@@ -5,7 +5,7 @@
  * On success → navigates to /live-predict.
  * All class names come from public/assets/login-template.css.
  */
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useAuthStore } from '../../store/authStore';
@@ -13,7 +13,15 @@ import { useTranslation } from '../../hooks/useTranslation';
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const { login, isLoading, error, clearError } = useAuthStore();
+  const { login, isLoading, error, clearError, checkSession } = useAuthStore();
+
+  useEffect(() => {
+    checkSession().then(() => {
+      if (useAuthStore.getState().isAuthenticated) {
+        navigate('/live-predict', { replace: true });
+      }
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const { t } = useTranslation();
 
   const [email, setEmail] = useState('');

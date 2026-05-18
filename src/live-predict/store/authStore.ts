@@ -44,7 +44,7 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
   // ── State ──────────────────────────────────────────────────
   user: null,
   isAuthenticated: false,
-  isLoading: false,
+  isLoading: true, // true until the first checkSession() resolves
   error: null,
 
   // ── Actions ────────────────────────────────────────────────
