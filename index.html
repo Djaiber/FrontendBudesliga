@@ -23,6 +23,7 @@
         <div class="top-bar-links">
           <a href="#">🏆 BUNDESLIGA APP</a>
           <a href="#">⚽ FANTASY MANAGER</a>
+          <div id="language-switcher-container"></div>
         </div>
       </div>
     </div>
@@ -42,8 +43,8 @@
         <div class="header-right">
           
  
-          <!-- Adidas Club dropdown -->
-          <div class="adidas-wrapper">
+          <!-- Adidas Club dropdown (hidden by default, shown when authenticated) -->
+          <div class="adidas-wrapper" id="adidas-wrapper" style="display: none;">
             <button class="adidas-btn" id="adidasBtn" aria-haspopup="true" aria-expanded="false">
               <div class="adidas-btn-stripes" aria-hidden="true">
                 <span></span><span></span><span></span>

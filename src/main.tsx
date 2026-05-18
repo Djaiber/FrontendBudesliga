@@ -16,7 +16,9 @@ import RegisterPage from './live-predict/components/pages/RegisterPage';
 import ConfirmPage from './live-predict/components/pages/ConfirmPage';
 import { RequireAuth } from './live-predict/components/auth/RequireAuth';
 import { BundesligaLogo } from './components/icons/BundesligaLogo';
+import { LanguageSwitcher } from './live-predict/components/ui/LanguageSwitcher';
 import { initAdidasClub } from './scripts/adidasClub';
+import { useAuthStore } from './live-predict/store/authStore';
 
 // Lazy load match detail page for code splitting
 const MatchDetailPage = lazy(() => import('./live-predict/components/pages/MatchDetailPage'));
@@ -114,6 +116,37 @@ const logoContainer = document.getElementById('bundesliga-logo');
 if (logoContainer) {
   createRoot(logoContainer).render(<BundesligaLogo size={40} />);
 }
+
+// Render Language Switcher in top bar
+const languageSwitcherContainer = document.getElementById('language-switcher-container');
+if (languageSwitcherContainer) {
+  createRoot(languageSwitcherContainer).render(
+    <StrictMode>
+      <LanguageSwitcher />
+    </StrictMode>
+  );
+}
+
+// Show/hide Adidas Club based on authentication status
+function updateAdidasClubVisibility() {
+  const adidasWrapper = document.getElementById('adidas-wrapper');
+  const { isAuthenticated } = useAuthStore.getState();
+  
+  if (adidasWrapper) {
+    adidasWrapper.style.display = isAuthenticated ? 'block' : 'none';
+  }
+}
+
+// Subscribe to auth store changes
+useAuthStore.subscribe((state) => {
+  const adidasWrapper = document.getElementById('adidas-wrapper');
+  if (adidasWrapper) {
+    adidasWrapper.style.display = state.isAuthenticated ? 'block' : 'none';
+  }
+});
+
+// Initial check
+updateAdidasClubVisibility();
 
 // Update active nav link based on current route
 function updateActiveNav() {
