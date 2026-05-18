@@ -9,6 +9,65 @@
  */
 
 export const de = {
+  // ── Auth pages ────────────────────────────────────────────────────────────
+  auth: {
+    login: {
+      title: 'Anmelden',
+      subtitle: 'Melde dich an, um Live Predict zu nutzen.',
+      emailLabel: 'E-Mail',
+      emailPlaceholder: 'deine@email.de',
+      passwordLabel: 'Passwort',
+      passwordPlaceholder: '••••••••',
+      submitButton: 'Anmelden',
+      submitButtonLoading: 'Wird angemeldet…',
+      noAccountYet: 'Noch kein Konto?',
+      registerLink: 'Jetzt registrieren',
+    },
+    register: {
+      title: 'Registrieren',
+      subtitle: 'Erstelle dein Konto für Bundesliga Live Predict.',
+      nameLabel: 'Name',
+      namePlaceholder: 'Dein vollständiger Name',
+      emailLabel: 'E-Mail',
+      emailPlaceholder: 'deine@email.de',
+      passwordLabel: 'Passwort',
+      passwordPlaceholder: 'Mindestens 8 Zeichen',
+      confirmPasswordLabel: 'Passwort bestätigen',
+      confirmPasswordPlaceholder: 'Passwort wiederholen',
+      submitButton: 'Konto erstellen',
+      submitButtonLoading: 'Wird registriert…',
+      alreadyRegistered: 'Bereits registriert?',
+      loginLink: 'Jetzt anmelden',
+      errorNameRequired: 'Bitte gib deinen Namen ein.',
+      errorPasswordMismatch: 'Die Passwörter stimmen nicht überein.',
+      errorPasswordTooShort: 'Das Passwort muss mindestens 8 Zeichen lang sein.',
+    },
+    confirm: {
+      title: 'Konto bestätigen',
+      subtitle: 'Wir haben dir einen 6-stelligen Bestätigungscode an deine E-Mail-Adresse gesendet. Bitte gib den Code unten ein, um dein Konto zu aktivieren.',
+      emailLabel: 'E-Mail',
+      emailPlaceholder: 'deine@email.de',
+      passwordLabel: 'Passwort',
+      passwordPlaceholder: '••••••••',
+      codeLabel: 'Bestätigungscode',
+      codePlaceholder: '000000',
+      infoText: 'Kein Code erhalten? Überprüfe deinen Spam-Ordner oder',
+      infoTextBold: 'fordere einen neuen Code an',
+      submitButton: 'Konto bestätigen',
+      submitButtonLoading: 'Wird bestätigt…',
+      successWithAutoLogin: 'Dein Konto wurde erfolgreich bestätigt. Du wirst angemeldet…',
+      successWithoutAutoLogin: 'Dein Konto wurde erfolgreich bestätigt. Du kannst dich jetzt anmelden.',
+      backToLogin: 'Zurück zur',
+      loginLink: 'Anmeldung',
+    },
+    errors: {
+      loginFailed: 'Anmeldung fehlgeschlagen.',
+      registerFailed: 'Registrierung fehlgeschlagen.',
+      confirmFailed: 'Ungültiger oder abgelaufener Code. Bitte versuche es erneut.',
+      confirmOrLoginFailed: 'Bestätigung oder Anmeldung fehlgeschlagen.',
+    },
+  },
+
   // ── DEMOMODUS banner ──────────────────────────────────────────────────────
   demomodusBanner: 'DEMOMODUS – Keine echten Einsätze',
 
@@ -89,3 +148,4 @@ export const de = {
  * ```
  */
 export type I18nDe = typeof de;
+

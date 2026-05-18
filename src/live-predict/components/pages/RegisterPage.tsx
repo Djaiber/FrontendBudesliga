@@ -9,10 +9,12 @@ import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useAuthStore } from '../../store/authStore';
+import { useTranslation } from '../../hooks/useTranslation';
 
 export function RegisterPage() {
   const navigate = useNavigate();
   const { register, isLoading, error, clearError } = useAuthStore();
+  const { t } = useTranslation();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -26,17 +28,17 @@ export function RegisterPage() {
     clearError();
 
     if (!name.trim()) {
-      setLocalError('Bitte gib deinen Namen ein.');
+      setLocalError(t('auth.register.errorNameRequired'));
       return;
     }
 
     if (password !== confirmPassword) {
-      setLocalError('Die Passwörter stimmen nicht überein.');
+      setLocalError(t('auth.register.errorPasswordMismatch'));
       return;
     }
 
     if (password.length < 8) {
-      setLocalError('Das Passwort muss mindestens 8 Zeichen lang sein.');
+      setLocalError(t('auth.register.errorPasswordTooShort'));
       return;
     }
 
@@ -47,26 +49,28 @@ export function RegisterPage() {
     }
   };
 
-  const displayError = localError ?? error;
+  // Translate error if it's a translation key, otherwise show as-is
+  const storeError = error && error.startsWith('auth.') ? t(error as any) : error;
+  const displayError = localError ?? storeError;
 
   return (
     <AuthLayout>
       <div className="auth-card">
-        <h1 className="auth-title">Registrieren</h1>
+        <h1 className="auth-title">{t('auth.register.title')}</h1>
         <p className="auth-subtitle">
-          Erstelle dein Konto für Bundesliga Live Predict.
+          {t('auth.register.subtitle')}
         </p>
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           {displayError && <p className="auth-error">{displayError}</p>}
 
           <div className="auth-field">
-            <label htmlFor="name" className="auth-label">Name</label>
+            <label htmlFor="name" className="auth-label">{t('auth.register.nameLabel')}</label>
             <input
               id="name"
               type="text"
               className="auth-input"
-              placeholder="Dein vollständiger Name"
+              placeholder={t('auth.register.namePlaceholder')}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -76,12 +80,12 @@ export function RegisterPage() {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="email" className="auth-label">E-Mail</label>
+            <label htmlFor="email" className="auth-label">{t('auth.register.emailLabel')}</label>
             <input
               id="email"
               type="email"
               className="auth-input"
-              placeholder="deine@email.de"
+              placeholder={t('auth.register.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -91,12 +95,12 @@ export function RegisterPage() {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="password" className="auth-label">Passwort</label>
+            <label htmlFor="password" className="auth-label">{t('auth.register.passwordLabel')}</label>
             <input
               id="password"
               type="password"
               className="auth-input"
-              placeholder="Mindestens 8 Zeichen"
+              placeholder={t('auth.register.passwordPlaceholder')}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -107,13 +111,13 @@ export function RegisterPage() {
 
           <div className="auth-field">
             <label htmlFor="confirm-password" className="auth-label">
-              Passwort bestätigen
+              {t('auth.register.confirmPasswordLabel')}
             </label>
             <input
               id="confirm-password"
               type="password"
               className="auth-input"
-              placeholder="Passwort wiederholen"
+              placeholder={t('auth.register.confirmPasswordPlaceholder')}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
@@ -124,15 +128,15 @@ export function RegisterPage() {
 
           <button type="submit" className="auth-btn" disabled={isLoading}>
             {isLoading && <span className="auth-btn-spinner" aria-hidden="true" />}
-            {isLoading ? 'Wird registriert…' : 'Konto erstellen'}
+            {isLoading ? t('auth.register.submitButtonLoading') : t('auth.register.submitButton')}
           </button>
         </form>
 
         <hr className="auth-divider" />
 
         <p className="auth-footer">
-          Bereits registriert?{' '}
-          <Link to="/login" className="auth-link">Jetzt anmelden</Link>
+          {t('auth.register.alreadyRegistered')}{' '}
+          <Link to="/login" className="auth-link">{t('auth.register.loginLink')}</Link>
         </p>
       </div>
     </AuthLayout>

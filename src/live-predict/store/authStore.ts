@@ -61,7 +61,7 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
         isLoading: false,
       });
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Anmeldung fehlgeschlagen.';
+      const message = err instanceof Error ? err.message : 'auth.errors.loginFailed';
       set({ error: message, isLoading: false });
     }
   },
@@ -90,7 +90,7 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
       });
       set({ isLoading: false });
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Registrierung fehlgeschlagen.';
+      const message = err instanceof Error ? err.message : 'auth.errors.registerFailed';
       set({ error: message, isLoading: false });
     }
   },
@@ -101,7 +101,7 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
       await amplifyConfirmSignUp({ username: email, confirmationCode: code });
       set({ isLoading: false });
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Ungültiger oder abgelaufener Code. Bitte versuche es erneut.';
+      const message = err instanceof Error ? err.message : 'auth.errors.confirmFailed';
       set({ error: message, isLoading: false });
     }
   },
@@ -122,7 +122,7 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
         isLoading: false,
       });
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Bestätigung oder Anmeldung fehlgeschlagen.';
+      const message = err instanceof Error ? err.message : 'auth.errors.confirmOrLoginFailed';
       set({ error: message, isLoading: false });
       throw err; // Re-throw to allow component to handle
     }

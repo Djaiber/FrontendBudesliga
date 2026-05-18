@@ -6,6 +6,7 @@
  * Loads login-template.css from /public/assets/.
  */
 import { useEffect } from 'react';
+import { LanguageSwitcher } from '../ui/LanguageSwitcher';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -26,6 +27,9 @@ export function AuthLayout({ children }: AuthLayoutProps) {
 
   return (
     <div className="auth-root">
+      <div style={{ position: 'absolute', top: '24px', right: '24px' }}>
+        <LanguageSwitcher />
+      </div>
       <img
         src="/assets/logos/Budesliga-svg.png"
         alt="Bundesliga"

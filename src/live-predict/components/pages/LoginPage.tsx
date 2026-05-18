@@ -9,10 +9,12 @@ import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useAuthStore } from '../../store/authStore';
+import { useTranslation } from '../../hooks/useTranslation';
 
 export function LoginPage() {
   const navigate = useNavigate();
   const { login, isLoading, error, clearError } = useAuthStore();
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,24 +29,27 @@ export function LoginPage() {
     }
   };
 
+  // Translate error if it's a translation key, otherwise show as-is
+  const displayError = error && error.startsWith('auth.') ? t(error as any) : error;
+
   return (
     <AuthLayout>
       <div className="auth-card">
-        <h1 className="auth-title">Anmelden</h1>
+        <h1 className="auth-title">{t('auth.login.title')}</h1>
         <p className="auth-subtitle">
-          Melde dich an, um Live Predict zu nutzen.
+          {t('auth.login.subtitle')}
         </p>
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
-          {error && <p className="auth-error">{error}</p>}
+          {displayError && <p className="auth-error">{displayError}</p>}
 
           <div className="auth-field">
-            <label htmlFor="email" className="auth-label">E-Mail</label>
+            <label htmlFor="email" className="auth-label">{t('auth.login.emailLabel')}</label>
             <input
               id="email"
               type="email"
               className="auth-input"
-              placeholder="deine@email.de"
+              placeholder={t('auth.login.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -54,12 +59,12 @@ export function LoginPage() {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="password" className="auth-label">Passwort</label>
+            <label htmlFor="password" className="auth-label">{t('auth.login.passwordLabel')}</label>
             <input
               id="password"
               type="password"
               className="auth-input"
-              placeholder="••••••••"
+              placeholder={t('auth.login.passwordPlaceholder')}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -70,15 +75,15 @@ export function LoginPage() {
 
           <button type="submit" className="auth-btn" disabled={isLoading}>
             {isLoading && <span className="auth-btn-spinner" aria-hidden="true" />}
-            {isLoading ? 'Wird angemeldet…' : 'Anmelden'}
+            {isLoading ? t('auth.login.submitButtonLoading') : t('auth.login.submitButton')}
           </button>
         </form>
 
         <hr className="auth-divider" />
 
         <p className="auth-footer">
-          Noch kein Konto?{' '}
-          <Link to="/register" className="auth-link">Jetzt registrieren</Link>
+          {t('auth.login.noAccountYet')}{' '}
+          <Link to="/register" className="auth-link">{t('auth.login.registerLink')}</Link>
         </p>
       </div>
     </AuthLayout>
