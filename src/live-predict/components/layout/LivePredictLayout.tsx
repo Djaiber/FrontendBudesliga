@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { DemomodusBanner } from '../atoms/DemomodusBanner/DemomodusBanner';
+import { ConnectionStatus } from '../ui/ConnectionStatus';
 import styles from './LivePredictLayout.module.css';
 
 /**
@@ -18,6 +19,7 @@ export function LivePredictLayout() {
   return (
     <div className={styles.layout}>
       <DemomodusBanner />
+      <ConnectionStatus />
       <div className={styles.content}>
         <Outlet />
       </div>

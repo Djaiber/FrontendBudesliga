@@ -1,0 +1,18 @@
+.wrapper {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  cursor: default;
+}
+
+.dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dotOpen        { background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+.dotConnecting  { background: #eab308; box-shadow: 0 0 6px #eab30888; }
+.dotClosed      { background: var(--red, #d2001f); box-shadow: 0 0 6px #d2001f88; }

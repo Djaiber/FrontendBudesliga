@@ -136,6 +136,30 @@ export const de = {
   connectionStatusConnecting: 'Verbinde...',
   connectionStatusConnected: 'Verbunden',
   connectionStatusDisconnected: 'Getrennt',
+
+  // ── Connected Arena: game widgets ─────────────────────────────────────────
+  games: {
+    nextGoal:   { label: 'Minute (1–90)', prompt: 'Wann fällt das nächste Tor?' },
+    corners:    { label: 'Ecken',         prompt: 'Wie viele Ecken in diesem Abschnitt?' },
+    goalWindow: { label: 'Tor im Zeitfenster', yes: 'Ja', no: 'Nein' },
+  },
+
+  // ── Connected Arena: room ─────────────────────────────────────────────────
+  room: {
+    merge:      { notification: 'Wechsel in einen neuen Raum in' },
+    connection: { open: 'Verbunden', connecting: 'Verbinde…', closed: 'Getrennt' },
+  },
+
+  // ── Connected Arena: tier badges ──────────────────────────────────────────
+  tier: {
+    dummies: 'Dummies', enthusiast: 'Enthusiast', amateur: 'Amateur', savvy: 'Savvy',
+  },
+
+  // ── Connected Arena: match event feed ────────────────────────────────────
+  event: {
+    corner: 'Ecke', goal: 'Tor', foul: 'Foul',
+    yellow: 'Gelbe Karte', red: 'Rote Karte', substitution: 'Einwechslung',
+  },
 } as const;
 
 /**

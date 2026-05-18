@@ -132,6 +132,30 @@ export const en = {
   connectionStatusConnecting: 'Connecting...',
   connectionStatusConnected: 'Connected',
   connectionStatusDisconnected: 'Disconnected',
+
+  // ── Connected Arena: game widgets ─────────────────────────────────────────
+  games: {
+    nextGoal:   { label: 'Minute (1–90)', prompt: 'When will the next goal be scored?' },
+    corners:    { label: 'Corners',       prompt: 'How many corners in this interval?' },
+    goalWindow: { label: 'Goal in window', yes: 'Yes', no: 'No' },
+  },
+
+  // ── Connected Arena: room ─────────────────────────────────────────────────
+  room: {
+    merge:      { notification: 'Moving to a new room in' },
+    connection: { open: 'Connected', connecting: 'Connecting…', closed: 'Disconnected' },
+  },
+
+  // ── Connected Arena: tier badges ──────────────────────────────────────────
+  tier: {
+    dummies: 'Dummies', enthusiast: 'Enthusiast', amateur: 'Amateur', savvy: 'Savvy',
+  },
+
+  // ── Connected Arena: match event feed ────────────────────────────────────
+  event: {
+    corner: 'Corner', goal: 'Goal', foul: 'Foul',
+    yellow: 'Yellow Card', red: 'Red Card', substitution: 'Substitution',
+  },
 } as const;
 
 export type I18nEn = typeof en;

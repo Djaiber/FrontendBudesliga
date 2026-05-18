@@ -1,0 +1,56 @@
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: var(--dark2, #1a1a1a);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.rank {
+  color: var(--text-dim, #666);
+  min-width: 28px;
+  font-size: 12px;
+}
+
+.name {
+  flex: 1;
+  color: var(--text, #fff);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score {
+  color: var(--text, #fff);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tier {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.tierDummies  { background: #444; color: #ccc; }
+.tierEnthusiast { background: #1a3a6e; color: #7eb8ff; }
+.tierAmateur  { background: #6e3a00; color: #ffaa50; }
+.tierSavvy    { background: var(--red, #d2001f); color: #fff; }
+
+.streak {
+  color: var(--red, #d2001f);
+  font-weight: 700;
+  font-size: 12px;
+}
