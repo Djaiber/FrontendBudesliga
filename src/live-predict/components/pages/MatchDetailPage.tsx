@@ -5,6 +5,7 @@ import { de } from '../../i18n/de';
 import { useMatchStore } from '../../store/matchStore';
 import { useMarketStore } from '../../store/marketStore';
 import { useBetStore } from '../../store/betStore';
+import { usePointsStore } from '../../store/pointsStore';
 import { useMatchStream } from '../../hooks/useMatchStream';
 import type { Frame } from '../../types/frame';
 import type { MiniMarket, Outcome } from '../../types/market';
@@ -50,18 +51,27 @@ export function MatchDetailPage() {
   const addShot = useMatchStore((s) => s.addShot);
   const setSprintCount = useMatchStore((s) => s.setSprintCount);
 
+  const setMinute = useMatchStore((s) => s.setMinute);
+  const setPossession = useMatchStore((s) => s.setPossession);
+
   const addMarket = useMarketStore((s) => s.addMarket);
   const updateMarket = useMarketStore((s) => s.updateMarket);
   const settleMarket = useMarketStore((s) => s.settleMarket);
 
   const bets = useBetStore((s) => s.bets);
   const settleBet = useBetStore((s) => s.settleBet);
+  const awardPoints = usePointsStore((s) => s.awardPoints);
 
   // ── Store reads ──────────────────────────────────────────────────────────────
   const currentMatch = useMatchStore((s) => s.currentMatch);
 
   // ── Frame ref — written by onFrame, read by PitchView's rAF loop ─────────────
   const frameRef = useRef<Frame | null>(null);
+
+  // ── First-frame timestamp — used to derive live match minute ─────────────────
+  // The transport sets frame.timestamp = connectTime + offsetMs, so
+  // (frame.timestamp - firstFrameTs) gives true elapsed match time in ms.
+  const firstFrameTsRef = useRef<number | null>(null);
 
   // ── BetSlip state ────────────────────────────────────────────────────────────
   const [selectedOutcome, setSelectedOutcome] = useState<Outcome | null>(null);
@@ -88,11 +98,23 @@ export function MatchDetailPage() {
       // Write directly to ref — no Zustand, no re-render (Req 7.5, 16.3)
       frameRef.current = frame;
 
-      // Update sprint count from frame (players with speedKmh >= 25)
+      // ── Live match minute ─────────────────────────────────────────────────
+      if (firstFrameTsRef.current === null) {
+        firstFrameTsRef.current = frame.timestamp;
+      }
+      const elapsedMs = frame.timestamp - firstFrameTsRef.current;
+      setMinute(Math.floor(elapsedMs / 60_000));
+
+      // ── Possession (ball-position proxy) ─────────────────────────────────
+      // Home attacks right (x increases). Ball closer to x=105 → home possession.
+      const homePct = Math.round((frame.ball.x / 105) * 100);
+      setPossession(homePct, 100 - homePct);
+
+      // ── Sprint count ──────────────────────────────────────────────────────
       const sprinting = frame.players.filter((p) => p.speedKmh >= 25).length;
       setSprintCount(sprinting);
     },
-    [setSprintCount],
+    [setMinute, setPossession, setSprintCount],
   );
 
   const handleEvent = useCallback(
@@ -139,9 +161,10 @@ export function MatchDetailPage() {
       for (const bet of matchingBets) {
         const won = bet.outcomeId === winningOutcomeId;
         settleBet(bet.id, won);
+        if (won) awardPoints(bet.potentialReturn);
       }
     },
-    [settleMarket, bets, settleBet],
+    [settleMarket, bets, settleBet, awardPoints],
   );
 
   // ── Connect to live stream ────────────────────────────────────────────────────

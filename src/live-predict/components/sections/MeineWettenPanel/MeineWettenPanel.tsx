@@ -1,4 +1,5 @@
 import { useBetStore } from '../../../store/betStore';
+import { usePointsStore } from '../../../store/pointsStore';
 import { de } from '../../../i18n/de';
 import type { Bet, BetStatus } from '../../../types/bet';
 import styles from './MeineWettenPanel.module.css';
@@ -80,8 +81,9 @@ function BetRow({ bet }: { bet: Bet }) {
  * Validates: Requirements 12.1, 12.2, 12.3, 12.4
  */
 export function MeineWettenPanel() {
-  const bets = useBetStore((state) => state.bets);
-  const pnl  = useBetStore((state) => state.sessionPnL);
+  const bets    = useBetStore((state) => state.bets);
+  const pnl     = useBetStore((state) => state.sessionPnL);
+  const balance = usePointsStore((state) => state.balance);
 
   // Determine P&L colour class
   const pnlClass =
@@ -94,6 +96,14 @@ export function MeineWettenPanel() {
       {/* ── Section header ──────────────────────────────────────────────── */}
       <div className="section-header">
         <h2 className="section-title">Meine Wetten</h2>
+      </div>
+
+      {/* ── Points balance ───────────────────────────────────────────────── */}
+      <div className={styles.pnlSummary} aria-live="polite">
+        <span className={styles.pnlLabel}>Punktestand</span>
+        <span className={styles.pnlValue} style={{ color: 'var(--color-accent, #f5a623)' }}>
+          {balance.toFixed(0)} Pts
+        </span>
       </div>
 
       {/* ── Session P&L summary ─────────────────────────────────────────── */}

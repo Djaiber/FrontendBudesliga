@@ -1,0 +1,227 @@
+{
+  "info": {
+    "name": "Bundesliga Live-Predict API",
+    "description": "REST + WebSocket endpoints for the Bundesliga prediction platform.\n\nBase URL: http://localhost:3001\nWebSocket: ws://localhost:3001/live/:matchId\n\nStart the backend with: cd backend && npm install && npm run dev",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3001" },
+    { "key": "match_id", "value": "DFL-MAT-111111" },
+    { "key": "market_id", "value": "" },
+    { "key": "bet_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/health",
+            "description": "Verify the server is running."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Matches",
+      "item": [
+        {
+          "name": "List Matches",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/matches",
+            "description": "Returns all available matches from the XML dataset."
+          }
+        },
+        {
+          "name": "Get Match Detail",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/matches/{{match_id}}",
+            "description": "Full match info including home/away teams and roster."
+          }
+        },
+        {
+          "name": "Get Players",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/matches/{{match_id}}/players",
+            "description": "Starting XI and squad for each team."
+          }
+        },
+        {
+          "name": "Get Events (all)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/matches/{{match_id}}/events?limit=20",
+              "query": [
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "KPI events (passes, carries, tackles…) from kpi_data XML."
+          }
+        },
+        {
+          "name": "Get Events (filter by type)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/matches/{{match_id}}/events?type=Play&limit=10",
+              "query": [
+                { "key": "type", "value": "Play" },
+                { "key": "limit", "value": "10" }
+              ]
+            },
+            "description": "Filter events by type: Play | Reception | Carry | TacklingGame"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Markets",
+      "item": [
+        {
+          "name": "List Open Markets",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/markets?matchId={{match_id}}&status=open",
+              "query": [
+                { "key": "matchId", "value": "{{match_id}}" },
+                { "key": "status", "value": "open" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Market by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/markets/{{market_id}}"
+          }
+        },
+        {
+          "name": "Create Custom Market",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/markets",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"matchId\": \"DFL-MAT-111111\",\n  \"question\": \"Nächster Torschuss?\",\n  \"category\": \"Torschuss\",\n  \"ttlSeconds\": 45,\n  \"outcomes\": [\n    { \"id\": \"o1\", \"label\": \"FC Team\", \"decimalOdds\": 1.90, \"impliedProbability\": 0.53 },\n    { \"id\": \"o2\", \"label\": \"Club\", \"decimalOdds\": 2.10, \"impliedProbability\": 0.47 }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Create Nächstes Tor Market",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/markets/next-goal",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"matchId\": \"DFL-MAT-111111\",\n  \"upToMinute\": 30,\n  \"homePossession\": 62,\n  \"awayPossession\": 38\n}"
+            },
+            "description": "Generates a 'Nächstes Tor' market with odds derived from possession stats."
+          }
+        },
+        {
+          "name": "Settle Market",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/api/markets/{{market_id}}/settle",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"winningOutcomeId\": \"REPLACE_WITH_OUTCOME_ID\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Cancel Market",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/api/markets/{{market_id}}/cancel"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bets",
+      "item": [
+        {
+          "name": "List Bets",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/bets"
+          }
+        },
+        {
+          "name": "List Bets by User",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/bets?userId=user-123",
+              "query": [{ "key": "userId", "value": "user-123" }]
+            }
+          }
+        },
+        {
+          "name": "Get Bet by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/bets/{{bet_id}}"
+          }
+        },
+        {
+          "name": "Place Bet",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/bets",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"matchId\": \"DFL-MAT-111111\",\n  \"marketId\": \"REPLACE_WITH_MARKET_ID\",\n  \"outcomeId\": \"REPLACE_WITH_OUTCOME_ID\",\n  \"stake\": 50,\n  \"userId\": \"user-123\"\n}"
+            },
+            "description": "Places a bet. Stake is in points (1–500). Returns a Bet object with status 'ausstehend'."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predictions",
+      "item": [
+        {
+          "name": "Next Goal Prediction (5 min)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/predictions/next-goal?matchId={{match_id}}&window=5",
+              "query": [
+                { "key": "matchId", "value": "{{match_id}}" },
+                { "key": "window", "value": "5" }
+              ]
+            },
+            "description": "Computes next-goal probability from real tracking data.\nFirst call loads ~5 min of XML positions (~30s). Subsequent calls are instant.\n\nResponse includes:\n- homeProbability / awayProbability / noGoalProbability\n- homeOdds / awayOdds / noGoalOdds (fair-value)\n- reasoning: possession, attacking-third count, avg speed"
+          }
+        },
+        {
+          "name": "Next Goal Prediction (10 min)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/predictions/next-goal?matchId={{match_id}}&window=10",
+              "query": [
+                { "key": "matchId", "value": "{{match_id}}" },
+                { "key": "window", "value": "10" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

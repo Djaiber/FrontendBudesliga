@@ -111,8 +111,12 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
     try {
       // Step 1: Confirm the email verification code
       await amplifyConfirmSignUp({ username: email, confirmationCode: code });
-      
-      // Step 2: Automatically sign in the user
+
+      // Step 2: Clear any existing session so signIn doesn't throw
+      // "There is already a signed in user" (Amplify v6 guard)
+      try { await signOut(); } catch { /* no active session — safe to ignore */ }
+
+      // Step 3: Automatically sign in the user
       await signIn({ username: email, password });
       const cognitoUser = await getCurrentUser();
       

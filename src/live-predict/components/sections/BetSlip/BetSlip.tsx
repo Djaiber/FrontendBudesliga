@@ -2,6 +2,7 @@ import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { de } from '../../../i18n/de';
 import { useMarketStore } from '../../../store/marketStore';
 import { useBetStore } from '../../../store/betStore';
+import { usePointsStore } from '../../../store/pointsStore';
 import { createApiClient } from '../../../config/dataSource';
 import type { MiniMarket, Outcome } from '../../../types/market';
 import styles from './BetSlip.module.css';
@@ -74,6 +75,7 @@ export function BetSlip({
 
   // ── Store reads ─────────────────────────────────────────────────────────────
   const addBet = useBetStore((state) => state.addBet);
+  const deductPoints = usePointsStore((state) => state.deductPoints);
 
   // Watch the live ttlSeconds for this market from the store so we react to
   // real-time TTL decrements driven by MarketsFeed's setInterval.
@@ -192,6 +194,7 @@ export function BetSlip({
       });
 
       addBet(bet);
+      deductPoints(bet.stake);
       handleClose();
     } catch {
       setError(de.betSlipErrorGeneric);

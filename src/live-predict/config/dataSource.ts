@@ -3,7 +3,7 @@
 export const USE_MOCK = true;
 
 import type { ITransport } from '@/transport/ITransport';
-import { MockTransport } from '@/transport/MockTransport';
+import { XmlMockTransport } from '@/transport/XmlMockTransport';
 import { WebSocketTransport } from '@/transport/WebSocketTransport';
 import simulationData from '@/transport/simulation_output.json';
 import type { Match } from '@/types/match';
@@ -86,7 +86,7 @@ class RealApiClient implements IApiClient {
 
 export function createTransport(matchId: string): ITransport {
   return USE_MOCK
-    ? new MockTransport(matchId)
+    ? new XmlMockTransport(matchId)
     : new WebSocketTransport(`wss://api/live/${matchId}`);
 }
 
