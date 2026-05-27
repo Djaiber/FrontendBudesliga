@@ -1,6 +1,6 @@
 // config/dataSource.ts
 // Single flag: flip to false to connect to the real backend
-export const USE_MOCK = true;
+export const USE_MOCK = false;
 
 import type { ITransport } from '@/transport/ITransport';
 import { MockTransport } from '@/transport/MockTransport';
@@ -85,9 +85,21 @@ class RealApiClient implements IApiClient {
 // ---------------------------------------------------------------------------
 
 export function createTransport(matchId: string): ITransport {
-  return USE_MOCK
-    ? new MockTransport(matchId)
-    : new WebSocketTransport(`wss://api/live/${matchId}`);
+  if (USE_MOCK) {
+    return new MockTransport(matchId);
+  }
+
+  const wsUrl = import.meta.env.VITE_WS_URL as string | undefined;
+  if (!wsUrl) {
+    throw new Error('VITE_WS_URL environment variable is not set');
+  }
+
+  // TODO: get real Cognito token from authStore
+  // For now, ACCEPT_ANY_TOKEN=true in backend allows any token
+  const token = 'dev-token';
+  const url = `${wsUrl}?token=${token}`;
+
+  return new WebSocketTransport(url);
 }
 
 // ---------------------------------------------------------------------------
