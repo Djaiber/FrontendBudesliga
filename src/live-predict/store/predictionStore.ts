@@ -29,27 +29,30 @@ interface PredictionActions {
 }
 
 export const usePredictionStore = create<PredictionState & PredictionActions>((set, get) => {
-  websocket.on('PREDICTION_WINDOW_OPEN', (msg) => {
-    if (msg.type !== 'PREDICTION_WINDOW_OPEN') return;
+  websocket.on('prediction_window_open', (msg: any) => {
+    console.log('[PredictionStore] Received prediction_window_open:', msg);
+    if (msg.type !== 'prediction_window_open') return;
     set({
       activeWindow: {
-        windowId: msg.windowId,
+        windowId: msg.window_id,
         game: msg.game,
         prompt: msg.prompt,
-        deadlineMs: msg.deadlineMs,
+        deadlineMs: msg.deadline_ms,
         options: msg.options,
       },
       submittedValue: null,
     });
   });
 
-  websocket.on('PREDICTION_WINDOW_CLOSE', (msg) => {
-    if (msg.type !== 'PREDICTION_WINDOW_CLOSE') return;
+  websocket.on('prediction_window_close', (msg: any) => {
+    console.log('[PredictionStore] Received prediction_window_close:', msg);
+    if (msg.type !== 'prediction_window_close') return;
     set({ activeWindow: null });
   });
 
-  websocket.on('PREDICTION_RESULT', (msg) => {
-    if (msg.type !== 'PREDICTION_RESULT') return;
+  websocket.on('prediction_result', (msg: any) => {
+    console.log('[PredictionStore] Received prediction_result:', msg);
+    if (msg.type !== 'prediction_result') return;
     const { submittedValue } = get();
     if (submittedValue === null) return;
     set((s) => ({
