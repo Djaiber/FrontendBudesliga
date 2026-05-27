@@ -29,14 +29,15 @@ export function EventFeed() {
 
   useEffect(() => {
     const handler = (msg: unknown) => {
-      const m = msg as { minute: number; eventType: string; team: string };
+      console.log('[EventFeed] Received match_event:', msg);
+      const m = msg as { minute: number; event_type: string; team: string };
       setEvents((prev) => [
-        { id: ++seq, minute: m.minute, eventType: m.eventType, team: m.team },
+        { id: ++seq, minute: m.minute, eventType: m.event_type, team: m.team },
         ...prev.slice(0, MAX_EVENTS - 1),
       ]);
     };
-    websocket.on('MATCH_EVENT', handler as Parameters<typeof websocket.on>[1]);
-    return () => websocket.off('MATCH_EVENT', handler as Parameters<typeof websocket.off>[1]);
+    websocket.on('match_event', handler as Parameters<typeof websocket.on>[1]);
+    return () => websocket.off('match_event', handler as Parameters<typeof websocket.off>[1]);
   }, []);
 
   useEffect(() => {
