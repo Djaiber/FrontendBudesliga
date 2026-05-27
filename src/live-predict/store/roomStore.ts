@@ -55,8 +55,11 @@ export const useRoomStore = create<RoomState & RoomActions>((set) => {
     mergeNotification: null,
 
     joinRoom: () => {
+      console.log('[RoomStore] joinRoom() called, setting status to joining');
       set({ status: 'joining' });
+      console.log('[RoomStore] Sending JOIN_ROOM message via websocket');
       websocket.send({ type: 'JOIN_ROOM' });
+      console.log('[RoomStore] JOIN_ROOM sent');
     },
 
     leaveRoom: () =>

@@ -82,22 +82,32 @@ export function MatchDetailPage() {
     let unsubState: (() => void) | undefined;
 
     const connectWs = (token: string) => {
+      console.log('[Arena] Connecting with token:', token.substring(0, 20) + '...');
       unsubState = websocket.onStateChange((state) => {
-        if (state === 'open') joinRoom();
+        console.log('[Arena] State changed to:', state);
+        if (state === 'open') {
+          console.log('[Arena] Calling joinRoom()');
+          joinRoom();
+        }
       });
       websocket.connect(token);
+      console.log('[Arena] Current state after connect:', websocket.connectionState);
       // Also check if already open (race condition)
       if (websocket.connectionState === 'open') {
+        console.log('[Arena] Already open, calling joinRoom immediately');
         joinRoom();
       }
     };
 
+    console.log('[Arena] useEffect: Starting WebSocket lifecycle');
     fetchAuthSession()
       .then(({ tokens }) => {
         const idToken = tokens?.idToken?.toString();
+        console.log('[Arena] Auth session result - has token:', !!idToken);
         connectWs(idToken || 'dev-token');
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log('[Arena] Auth session failed, using dev-token:', err);
         connectWs('dev-token');
       });
 
