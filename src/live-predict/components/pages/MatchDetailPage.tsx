@@ -23,6 +23,7 @@ import { Leaderboard } from '../room/Leaderboard';
 import { EventFeed } from '../room/EventFeed';
 import { EmojiReactions } from '../room/EmojiReactions';
 import { MergeNotification } from '../room/MergeNotification';
+import { MatchClock } from '../room/MatchClock';
 import styles from './MatchDetailPage.module.css';
 
 /**
@@ -217,6 +218,7 @@ export function MatchDetailPage() {
 
         {/* Right — Arena panel + markets */}
         <div className={styles.rightColumn}>
+          <MatchClock />
           <Leaderboard />
           <EmojiReactions />
           <EventFeed />
