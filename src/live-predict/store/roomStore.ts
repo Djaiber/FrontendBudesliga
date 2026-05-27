@@ -20,31 +20,36 @@ interface RoomActions {
 }
 
 export const useRoomStore = create<RoomState & RoomActions>((set) => {
-  websocket.on('ROOM_JOINED', (msg) => {
-    if (msg.type !== 'ROOM_JOINED') return;
-    set({ roomId: msg.roomId, players: msg.players, status: 'active' });
+  websocket.on('room_joined', (msg: any) => {
+    console.log('[RoomStore] Received room_joined:', msg);
+    if (msg.type !== 'room_joined') return;
+    set({ roomId: msg.room_id, players: msg.players, status: 'active' });
   });
 
-  websocket.on('ROOM_MERGED', (msg) => {
-    if (msg.type !== 'ROOM_MERGED') return;
+  websocket.on('room_merged', (msg: any) => {
+    console.log('[RoomStore] Received room_merged:', msg);
+    if (msg.type !== 'room_merged') return;
     set({
       status: 'merging',
-      mergeNotification: { newRoomId: msg.newRoomId, countdownMs: msg.countdownMs },
+      mergeNotification: { newRoomId: msg.new_room_id, countdownMs: msg.countdown_ms },
     });
   });
 
-  websocket.on('PLAYER_JOINED', (msg) => {
-    if (msg.type !== 'PLAYER_JOINED') return;
+  websocket.on('player_joined', (msg: any) => {
+    console.log('[RoomStore] Received player_joined:', msg);
+    if (msg.type !== 'player_joined') return;
     set((s) => ({ players: [...s.players, msg.player] }));
   });
 
-  websocket.on('PLAYER_LEFT', (msg) => {
-    if (msg.type !== 'PLAYER_LEFT') return;
-    set((s) => ({ players: s.players.filter((p) => p.userId !== msg.userId) }));
+  websocket.on('player_left', (msg: any) => {
+    console.log('[RoomStore] Received player_left:', msg);
+    if (msg.type !== 'player_left') return;
+    set((s) => ({ players: s.players.filter((p) => p.userId !== msg.user_id) }));
   });
 
-  websocket.on('LEADERBOARD_UPDATE', (msg) => {
-    if (msg.type !== 'LEADERBOARD_UPDATE') return;
+  websocket.on('leaderboard_update', (msg: any) => {
+    console.log('[RoomStore] Received leaderboard_update:', msg);
+    if (msg.type !== 'leaderboard_update') return;
     set({ players: msg.entries as LeaderboardEntry[] });
   });
 
