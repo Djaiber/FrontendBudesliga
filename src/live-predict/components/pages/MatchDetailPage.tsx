@@ -82,10 +82,14 @@ export function MatchDetailPage() {
     let unsubState: (() => void) | undefined;
 
     const connectWs = (token: string) => {
-      websocket.connect(token);
       unsubState = websocket.onStateChange((state) => {
         if (state === 'open') joinRoom();
       });
+      websocket.connect(token);
+      // Also check if already open (race condition)
+      if (websocket.connectionState === 'open') {
+        joinRoom();
+      }
     };
 
     fetchAuthSession()
