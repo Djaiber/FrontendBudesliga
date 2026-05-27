@@ -81,16 +81,21 @@ export function MatchDetailPage() {
   useEffect(() => {
     let unsubState: (() => void) | undefined;
 
+    const connectWs = (token: string) => {
+      websocket.connect(token);
+      unsubState = websocket.onStateChange((state) => {
+        if (state === 'open') joinRoom();
+      });
+    };
+
     fetchAuthSession()
       .then(({ tokens }) => {
         const idToken = tokens?.idToken?.toString();
-        if (!idToken) return;
-        websocket.connect(idToken);
-        unsubState = websocket.onStateChange((state) => {
-          if (state === 'open') joinRoom();
-        });
+        connectWs(idToken || 'dev-token');
       })
-      .catch(console.error);
+      .catch(() => {
+        connectWs('dev-token');
+      });
 
     return () => {
       unsubState?.();
