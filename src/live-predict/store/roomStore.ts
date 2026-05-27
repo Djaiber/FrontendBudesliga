@@ -50,7 +50,7 @@ export const useRoomStore = create<RoomState & RoomActions>((set) => {
   websocket.on('leaderboard_update', (msg: any) => {
     console.log('[RoomStore] Received leaderboard_update:', msg);
     if (msg.type !== 'leaderboard_update') return;
-    set({ players: msg.entries as LeaderboardEntry[] });
+    set({ players: msg.leaderboard as LeaderboardEntry[] });
   });
 
   return {
