@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { DemomodusBanner } from '../atoms/DemomodusBanner/DemomodusBanner';
 import { ConnectionStatus } from '../ui/ConnectionStatus';
+import { useTranslation } from '../../hooks/useTranslation';
 import styles from './LivePredictLayout.module.css';
 
 /**
@@ -16,8 +17,18 @@ import styles from './LivePredictLayout.module.css';
  * Validates: Requirements 2.1, 3.1
  */
 export function LivePredictLayout() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.layout}>
+      {/* Adidas Club Points branding strip */}
+      <div className="adidas-brand-strip">
+        <img src="/assets/adidas-mark.svg" alt="Adidas" className="adidas-brand-mark" />
+        <span className="adidas-brand-text">{t('brand.poweredBy')}</span>
+        <span className="adidas-brand-divider">|</span>
+        <span className="adidas-brand-app">{t('brand.appName')}</span>
+      </div>
+
       <DemomodusBanner />
       <ConnectionStatus />
       <div className={styles.content}>

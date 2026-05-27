@@ -41,37 +41,43 @@ export function CornersInInterval({ windowId: _windowId, prompt, deadlineMs }: P
       </div>
       {submittedValue !== null ? (
         <p className={styles.submitted}>
-          {t('games.corners.label')}: {submittedValue}
+          {t('games.submitted')} – {t('games.corners.label')}: {submittedValue}
         </p>
       ) : (
-        <div className={styles.controls}>
-          <div className={styles.stepper}>
+        <>
+          <div className={styles.controls}>
+            <div className={styles.stepper}>
+              <button
+                className={styles.stepBtn}
+                onClick={() => setCount((c) => Math.max(0, c - 1))}
+                disabled={isDisabled || count === 0}
+                aria-label="−"
+              >
+                −
+              </button>
+              <span className={styles.stepValue}>{count}</span>
+              <button
+                className={styles.stepBtn}
+                onClick={() => setCount((c) => c + 1)}
+                disabled={isDisabled}
+                aria-label="+"
+              >
+                +
+              </button>
+            </div>
             <button
-              className={styles.stepBtn}
-              onClick={() => setCount((c) => Math.max(0, c - 1))}
-              disabled={isDisabled || count === 0}
-              aria-label="−"
-            >
-              −
-            </button>
-            <span className={styles.stepValue}>{count}</span>
-            <button
-              className={styles.stepBtn}
-              onClick={() => setCount((c) => c + 1)}
+              className={styles.submitBtn}
+              onClick={() => submitPrediction(count)}
               disabled={isDisabled}
-              aria-label="+"
             >
-              +
+              {t('games.submit')}
             </button>
           </div>
-          <button
-            className={styles.submitBtn}
-            onClick={() => submitPrediction(count)}
-            disabled={isDisabled}
-          >
-            OK
-          </button>
-        </div>
+          <div className="prediction-stake">
+            <span className="prediction-stake-icon">●</span>
+            {t('points.wagered')}: 50 {t('points.short')}
+          </div>
+        </>
       )}
     </div>
   );

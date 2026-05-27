@@ -137,11 +137,30 @@ export const de = {
   connectionStatusConnected: 'Verbunden',
   connectionStatusDisconnected: 'Getrennt',
 
+  // ── Adidas Club Points branding ───────────────────────────────────────────
+  brand: {
+    appName: 'Adidas Club Punkte Arena',
+    tagline: 'Setze deine Club Punkte auf Live-Fußball',
+    poweredBy: 'Powered by Adidas Club',
+  },
+
+  // ── Club Points terminology ───────────────────────────────────────────────
+  points: {
+    label: 'Club Punkte',
+    short: 'CP',
+    earned: 'Verdient',
+    wagered: 'Eingesetzt',
+  },
+
   // ── Connected Arena: game widgets ─────────────────────────────────────────
   games: {
     nextGoal:   { label: 'Minute (1–90)', prompt: 'Wann fällt das nächste Tor?' },
     corners:    { label: 'Ecken',         prompt: 'Wie viele Ecken in diesem Abschnitt?' },
     goalWindow: { label: 'Tor im Zeitfenster', yes: 'Ja', no: 'Nein' },
+    prediction: 'Vorhersage',
+    submit: 'Vorhersage abgeben',
+    submitted: 'Vorhersage gespeichert',
+    windowOpen: 'Live-Vorhersage',
   },
 
   // ── Connected Arena: room ─────────────────────────────────────────────────
@@ -150,9 +169,21 @@ export const de = {
     connection: { open: 'Verbunden', connecting: 'Verbinde…', closed: 'Getrennt' },
   },
 
-  // ── Connected Arena: tier badges ──────────────────────────────────────────
+  // ── Connected Arena: tier badges (Adidas member status) ──────────────────
   tier: {
-    dummies: 'Dummies', enthusiast: 'Enthusiast', amateur: 'Amateur', savvy: 'Savvy',
+    dummies: 'Rookie',
+    enthusiast: 'Supporter',
+    amateur: 'Athlet',
+    savvy: 'Legende',
+  },
+
+  // ── Leaderboard ───────────────────────────────────────────────────────────
+  leaderboard: {
+    title: 'Club-Rangliste',
+    rank: 'Platz',
+    member: 'Mitglied',
+    points: 'Club Punkte',
+    status: 'Mitgliedsstatus',
   },
 
   // ── Connected Arena: match event feed ────────────────────────────────────

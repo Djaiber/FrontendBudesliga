@@ -47,28 +47,34 @@ export function NextGoalTiming({ windowId: _windowId, prompt, deadlineMs }: Prop
       </div>
       {submittedValue !== null ? (
         <p className={styles.submitted}>
-          {t('games.nextGoal.label')}: {submittedValue}'
+          {t('games.submitted')} – {t('games.nextGoal.label')}: {submittedValue}'
         </p>
       ) : (
-        <div className={styles.controls}>
-          <input
-            type="number"
-            min={1}
-            max={90}
-            className={styles.input}
-            placeholder={t('games.nextGoal.label')}
-            value={minute}
-            onChange={(e) => setMinute(e.target.value)}
-            disabled={isDisabled}
-          />
-          <button
-            className={styles.submitBtn}
-            onClick={handleSubmit}
-            disabled={isDisabled || minute === ''}
-          >
-            OK
-          </button>
-        </div>
+        <>
+          <div className={styles.controls}>
+            <input
+              type="number"
+              min={1}
+              max={90}
+              className={styles.input}
+              placeholder={t('games.nextGoal.label')}
+              value={minute}
+              onChange={(e) => setMinute(e.target.value)}
+              disabled={isDisabled}
+            />
+            <button
+              className={styles.submitBtn}
+              onClick={handleSubmit}
+              disabled={isDisabled || minute === ''}
+            >
+              {t('games.submit')}
+            </button>
+          </div>
+          <div className="prediction-stake">
+            <span className="prediction-stake-icon">●</span>
+            {t('points.wagered')}: 50 {t('points.short')}
+          </div>
+        </>
       )}
     </div>
   );

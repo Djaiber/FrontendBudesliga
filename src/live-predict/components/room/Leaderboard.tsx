@@ -1,6 +1,7 @@
 import { useRoomStore } from '../../store/roomStore';
 import { useTranslation } from '../../hooks/useTranslation';
 import { getStreakMultiplier } from '../../utils/gamification';
+import { tierLabel } from '../../utils/tierLabel';
 import styles from './Leaderboard.module.css';
 
 const TIER_CLASS: Record<string, string> = {
@@ -20,6 +21,9 @@ export function Leaderboard() {
 
   return (
     <div className={styles.leaderboard}>
+      <div className={styles.header}>
+        <span className={styles.headerTitle}>{t('leaderboard.title')}</span>
+      </div>
       {sorted.map((player, i) => {
         const multiplier = getStreakMultiplier(player.streak);
         const tierClass = TIER_CLASS[player.tier];
@@ -27,10 +31,12 @@ export function Leaderboard() {
           <div key={player.userId} className={styles.row}>
             <span className={styles.rank}>#{i + 1}</span>
             <span className={styles.name}>{player.name}</span>
-            <span className={styles.score}>{player.score}</span>
+            <span className="leaderboard-points">
+              {player.score.toLocaleString('de-DE')} <span className="leaderboard-points-unit">{t('points.short')}</span>
+            </span>
             {tierClass !== undefined && (
               <span className={`${styles.tier} ${tierClass}`}>
-                {t(`tier.${player.tier.toLowerCase()}` as Parameters<typeof t>[0])}
+                {tierLabel(player.tier, t)}
               </span>
             )}
             {multiplier > 1 && (

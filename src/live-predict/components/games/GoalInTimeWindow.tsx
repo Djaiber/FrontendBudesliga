@@ -40,25 +40,31 @@ export function GoalInTimeWindow({ windowId: _windowId, prompt, deadlineMs }: Pr
       </div>
       {submittedValue !== null ? (
         <p className={styles.submitted}>
-          {t('games.goalWindow.label')}: {submittedValue}
+          {t('games.submitted')} – {t('games.goalWindow.label')}: {submittedValue}
         </p>
       ) : (
-        <div className={styles.toggle}>
-          <button
-            className={styles.toggleBtn}
-            onClick={() => submitPrediction('yes')}
-            disabled={isDisabled}
-          >
-            {t('games.goalWindow.yes')}
-          </button>
-          <button
-            className={styles.toggleBtn}
-            onClick={() => submitPrediction('no')}
-            disabled={isDisabled}
-          >
-            {t('games.goalWindow.no')}
-          </button>
-        </div>
+        <>
+          <div className={styles.toggle}>
+            <button
+              className={styles.toggleBtn}
+              onClick={() => submitPrediction('yes')}
+              disabled={isDisabled}
+            >
+              {t('games.goalWindow.yes')}
+            </button>
+            <button
+              className={styles.toggleBtn}
+              onClick={() => submitPrediction('no')}
+              disabled={isDisabled}
+            >
+              {t('games.goalWindow.no')}
+            </button>
+          </div>
+          <div className="prediction-stake">
+            <span className="prediction-stake-icon">●</span>
+            {t('points.wagered')}: 50 {t('points.short')}
+          </div>
+        </>
       )}
     </div>
   );

@@ -4,6 +4,21 @@
   gap: 4px;
 }
 
+.header {
+  padding: 8px 8px 4px;
+  border-bottom: 1px solid var(--border, #2a2a2a);
+  margin-bottom: 4px;
+}
+
+.headerTitle {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #888);
+}
+
 .row {
   display: flex;
   align-items: center;
