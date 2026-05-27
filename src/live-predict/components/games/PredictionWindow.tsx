@@ -12,11 +12,11 @@ export function PredictionWindow() {
   const props = { windowId, prompt, deadlineMs };
 
   switch (game) {
-    case 'next_goal_timing':
+    case 'NEXT_GOAL_TIMING':
       return <NextGoalTiming {...props} />;
-    case 'corners_in_interval':
+    case 'CORNERS_IN_INTERVAL':
       return <CornersInInterval {...props} />;
-    case 'goal_in_time_window':
+    case 'GOAL_IN_TIME_WINDOW':
       return <GoalInTimeWindow {...props} />;
     default:
       return null;

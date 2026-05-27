@@ -84,6 +84,11 @@ class ArenaWebSocket {
   }
 
   connect(idToken: string): void {
+    // Close existing socket before opening a new one (prevents duplicates on re-renders)
+    if (this.ws && this.ws.readyState !== WebSocket.CLOSED) {
+      this.ws.close(1000, 'Reconnecting');
+      this.ws = null;
+    }
     this.idToken = idToken;
     this.intentionalClose = false;
     this.reconnectAttempt = 0;
