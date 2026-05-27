@@ -7,6 +7,9 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './live-predict/config/cognito';
 import './styles/bundesliga.css';
+// Side-effect imports: register WebSocket handlers at app startup
+import './live-predict/store/predictionStore';
+import './live-predict/store/roomStore';
 import HomePage from './pages/HomePage';
 import LivePredictLayout from './live-predict/components/layout/LivePredictLayout';
 import MatchListPage from './live-predict/components/pages/MatchListPage';

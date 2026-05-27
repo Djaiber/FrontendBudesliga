@@ -19,39 +19,12 @@ interface RoomActions {
   clearMergeNotification: () => void;
 }
 
-export const useRoomStore = create<RoomState & RoomActions>((set) => {
-  websocket.on('room_joined', (msg: any) => {
-    console.log('[RoomStore] Received room_joined:', msg);
-    if (msg.type !== 'room_joined') return;
-    set({ roomId: msg.room_id, players: msg.players, status: 'active' });
-  });
+// Module-level store API capture - subscriptions registered at module load need this
+let storeApi: { setState: any; getState: any } | null = null;
 
-  websocket.on('room_merged', (msg: any) => {
-    console.log('[RoomStore] Received room_merged:', msg);
-    if (msg.type !== 'room_merged') return;
-    set({
-      status: 'merging',
-      mergeNotification: { newRoomId: msg.new_room_id, countdownMs: msg.countdown_ms },
-    });
-  });
-
-  websocket.on('player_joined', (msg: any) => {
-    console.log('[RoomStore] Received player_joined:', msg);
-    if (msg.type !== 'player_joined') return;
-    set((s) => ({ players: [...s.players, msg.player] }));
-  });
-
-  websocket.on('player_left', (msg: any) => {
-    console.log('[RoomStore] Received player_left:', msg);
-    if (msg.type !== 'player_left') return;
-    set((s) => ({ players: s.players.filter((p) => p.userId !== msg.user_id) }));
-  });
-
-  websocket.on('leaderboard_update', (msg: any) => {
-    console.log('[RoomStore] Received leaderboard_update:', msg);
-    if (msg.type !== 'leaderboard_update') return;
-    set({ players: msg.leaderboard as LeaderboardEntry[] });
-  });
+export const useRoomStore = create<RoomState & RoomActions>((set, get) => {
+  // Capture the store API for use by subscriptions registered at module load
+  storeApi = { setState: set, getState: get };
 
   return {
     roomId: null,
@@ -76,4 +49,47 @@ export const useRoomStore = create<RoomState & RoomActions>((set) => {
 
     clearMergeNotification: () => set({ mergeNotification: null, status: 'active' }),
   };
+});
+
+// Force the store to initialize immediately so storeApi is captured
+(function ensureStoreInitialized() {
+  useRoomStore.getState();
+})();
+
+// Register WebSocket subscriptions at MODULE LOAD time
+websocket.on('room_joined', (msg: any) => {
+  console.log('[RoomStore] Received room_joined:', msg);
+  if (msg.type !== 'room_joined') return;
+  storeApi?.setState({ roomId: msg.room_id, players: msg.players, status: 'active' });
+});
+
+websocket.on('room_merged', (msg: any) => {
+  console.log('[RoomStore] Received room_merged:', msg);
+  if (msg.type !== 'room_merged') return;
+  storeApi?.setState({
+    status: 'merging',
+    mergeNotification: { newRoomId: msg.new_room_id, countdownMs: msg.countdown_ms },
+  });
+});
+
+websocket.on('player_joined', (msg: any) => {
+  console.log('[RoomStore] Received player_joined:', msg);
+  if (msg.type !== 'player_joined') return;
+  if (!storeApi) return;
+  const state = storeApi.getState();
+  storeApi.setState({ players: [...state.players, msg.player] });
+});
+
+websocket.on('player_left', (msg: any) => {
+  console.log('[RoomStore] Received player_left:', msg);
+  if (msg.type !== 'player_left') return;
+  if (!storeApi) return;
+  const state = storeApi.getState();
+  storeApi.setState({ players: state.players.filter((p: Player) => p.userId !== msg.user_id) });
+});
+
+websocket.on('leaderboard_update', (msg: any) => {
+  console.log('[RoomStore] Received leaderboard_update:', msg);
+  if (msg.type !== 'leaderboard_update') return;
+  storeApi?.setState({ players: msg.leaderboard as LeaderboardEntry[] });
 });
