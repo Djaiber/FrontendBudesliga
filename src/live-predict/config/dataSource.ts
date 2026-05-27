@@ -68,15 +68,33 @@ class MockApiClient implements IApiClient {
 
 class RealApiClient implements IApiClient {
   async getLiveMatches(): Promise<Match[]> {
-    throw new Error('RealApiClient: not implemented');
+    // TODO: Call real REST API when available
+    // For now, return stub match so frontend loads
+    return [simulationData.matchMeta as Match];
   }
 
   async getMatch(_id: string): Promise<Match> {
-    throw new Error('RealApiClient: not implemented');
+    // TODO: Call real REST API when available
+    return simulationData.matchMeta as Match;
   }
 
-  async placeBet(_req: PlaceBetRequest): Promise<Bet> {
-    throw new Error('RealApiClient: not implemented');
+  async placeBet(req: PlaceBetRequest): Promise<Bet> {
+    // Predictions are sent via WebSocket (SUBMIT_PREDICTION message)
+    // This REST endpoint is unused in real flow
+    return {
+      id: crypto.randomUUID(),
+      matchId: req.matchId,
+      marketId: req.marketId,
+      marketQuestion: req.marketQuestion,
+      outcomeId: req.outcomeId,
+      outcomeLabel: req.outcomeLabel,
+      decimalOdds: req.decimalOdds,
+      stake: req.stake,
+      potentialReturn: req.stake * req.decimalOdds,
+      actualReturn: 0,
+      status: 'ausstehend',
+      placedAt: Date.now(),
+    };
   }
 }
 
