@@ -51,6 +51,7 @@ export function MatchDetailPage() {
   const addXG = useMatchStore((s) => s.addXG);
   const addShot = useMatchStore((s) => s.addShot);
   const setSprintCount = useMatchStore((s) => s.setSprintCount);
+  const setMatchMinute = useMatchStore((s) => s.setMatchMinute);
   const currentMatch = useMatchStore((s) => s.currentMatch);
 
   // ── Market / bet store ────────────────────────────────────────────────────
@@ -131,12 +132,13 @@ export function MatchDetailPage() {
   const handleEvent = useCallback(
     (event: Parameters<typeof addEvent>[0]) => {
       addEvent(event);
+      setMatchMinute(event.minute);
       if (event.type === 'goal') applyGoal(event.teamSide);
       if ((event.type === 'shot' || event.type === 'goal') && event.xG != null)
         addXG(event.teamSide, event.xG);
       if (event.type === 'shot' || event.type === 'goal') addShot(event.teamSide);
     },
-    [addEvent, applyGoal, addXG, addShot],
+    [addEvent, setMatchMinute, applyGoal, addXG, addShot],
   );
 
   const handleMarketNew = useCallback(

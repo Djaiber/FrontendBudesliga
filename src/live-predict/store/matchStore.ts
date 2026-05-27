@@ -43,6 +43,8 @@ interface MatchActions {
   addShot: (teamSide: 'home' | 'away') => void;
   /** Update sprint count from the latest frame (players with speedKmh >= 25). */
   setSprintCount: (count: number) => void;
+  /** Update current match minute. */
+  setMatchMinute: (minute: number) => void;
 }
 
 const defaultTeamMetrics = (): TeamMetrics => ({ possession: 50, xG: 0, shots: 0 });
@@ -126,4 +128,15 @@ export const useMatchStore = create<MatchState & MatchActions>((set) => ({
     set((state) => ({
       metrics: { ...state.metrics, sprintCount: count },
     })),
+
+  setMatchMinute: (minute) =>
+    set((state) => {
+      if (!state.currentMatch) return state;
+      return {
+        currentMatch: {
+          ...state.currentMatch,
+          minute,
+        },
+      };
+    }),
 }));
