@@ -31,10 +31,14 @@ export function EventFeed() {
     const handler = (msg: unknown) => {
       console.log('[EventFeed] Received match_event:', msg);
       const m = msg as { minute: number; event_type: string; team: string };
-      setEvents((prev) => [
-        { id: ++seq, minute: m.minute, eventType: m.event_type, team: m.team },
-        ...prev.slice(0, MAX_EVENTS - 1),
-      ]);
+      setEvents((prev) => {
+        const newEvent = { id: ++seq, minute: m.minute, eventType: m.event_type, team: m.team };
+        // Add new event and sort by minute (descending - most recent first)
+        const updated = [newEvent, ...prev];
+        return updated
+          .sort((a, b) => b.minute - a.minute)
+          .slice(0, MAX_EVENTS);
+      });
     };
     websocket.on('match_event', handler as Parameters<typeof websocket.on>[1]);
     return () => websocket.off('match_event', handler as Parameters<typeof websocket.off>[1]);
